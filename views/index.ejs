@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
+     <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+     <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
+     <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
+     <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-6 mx-auto">
+    			<!-- <legend  class="text-center" style="font-size: 16px;">Welcome to <%= title %></legend> -->
+    			<form role="form" class="form-horizontal" method="post" action="/addcustomer">
+    				<p class="text-center">Book This Room</p>
+    				<hr>
+    				 <div class="row">
+    				 	<div class="col-sm-6">
+    				 	<div class="form-group">
+			            <label for="input-text" class="control-label">Full Names</label>
+			            <input type="text" class="form-control" id="input-name" name="fullname" placeholder="Eg. obia william" required>
+			          </div>
+    				 	</div> 
+    				 	<div class="col-sm-6">
+    				 	<div class="form-group">
+			            <label for="input-text" class="control-label">Email Address</label>
+			            <input type="email" class="form-control" id="input-email" name="email"
+			            placeholder="Eg. obia@example.com" required>
+			          </div>
+    				 	</div> 
+    				 	</div>
+
+    				 	<div class="row">
+    				 	<div class="col-sm-12">
+    				 	<div class="form-group">
+			            <label for="input-phone" class="control-label">Primary Phone Number</label>
+			            <input type="text" class="form-control" id="input-phone" name="phonenumber" placeholder="Eg. +256757415220" required>
+			          </div>
+    				 	</div> 
+    				 </div>
+
+    				 <div class="row">
+    				 	<div class="col-sm-6">
+    				 	<div class="form-group">
+			            <label for="input-checkin" class="control-label">Check In:
+                   <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
+			            <input type="text" class="form-control datepicker-here" 
+			            data-language='en'  id="checkin" name="checkin_date" data-multiple-dates-separator=", " data-position='bottom left'
+			            placeholder="mm/dd/yyyy" required> 
+									
+			          </div>
+    				 	</div> 
+
+    				 	<div class="col-sm-6">
+    				 	<div class="form-group">
+			            <label for="input-checkin" class="control-label">CheckOut: 
+                    <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
+			           <input type="text" class="form-control datepicker-here" 
+			            data-language='en'  id="checkout" name="checkout_date"
+       					data-multiple-dates-separator=", "
+       					data-position='bottom left'
+			            placeholder="mm/dd/yyyy" required>
+
+			          </div>
+    				 	</div> 
+    				 </div>
+    				 	<div class="row">
+    				 	<div class="col-sm-12">
+						      <div class="form-group">
+                  <label class="control-label">Payment Method</label>
+					          <div class="col-xs-12">
+                  <div class="btn-group btn-group-vertical" data-toggle="buttons">
+                  <label class="btn active">
+                  <input type="radio" name='pay' id="cash" checked>
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-dot-circle-o fa-2x"></i> <span> Cash</span>
+                  </label>
+                  <label class="btn">
+                  <input type="radio" id="credit_card" name="pay">
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-dot-circle-o fa-2x"></i><span> Credit Card</span>
+                  </label>
+
+                   <label class="btn">
+                  <input type="radio" id="airtel_money" name="pay">
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-dot-circle-o fa-2x"></i><span> Airtel Money</span>
+                  </label>
+
+                    <label class="btn">
+                  <input type="radio" id="mtn_momo" name="pay">
+                  <i class="fa fa-circle-o fa-2x"></i>
+                  <i class="fa fa-dot-circle-o fa-2x"></i><span> MTN Mobile Money</span>
+                  </label>
+                  </div>
+                  </div>
+
+                 </div>
+						</div>
+						</div>
+						<div class="form-group">
+						<div class="pull-right">
+								<button class="btn btn-next btn-fill btn-warning btn-wd btn-sm" 
+								name="book" type="submit"><i class="fa fa-check"></i> Book Now</button>
+						</div>
+						</div>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+
+    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script src="/js/datepicker.min.js"></script>
+        <!-- Include English language -->
+    <script src="/js/i18n/datepicker.en.js"></script>
+    <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function () {
+    		// Initialization
+			$('#checkin').datepicker({});
+			$('#checkout').datepicker({});
+		});
+
+
+$('.btn-next').click(function(e){
+
+var fname = $('#input-name').val();
+var email = $('#input-email').val();
+var paymethod = $('#cash').val();
+var datein = $('#checkin').val();
+var dateout = $('#checkout').val();
+var mobile = $('#input-phone').val();
+
+
+if($('#credit_card').is(':checked')){
+	e.preventDefault();
+	swal("Alert","Credit Card, Coming Soon ..", "info");
+} 
+else if($('#airtel_money').is(':checked'))
+{
+	e.preventDefault();
+	swal("Alert","Airtel Money, Coming Soon ..", "info");
+} 
+else if($('#mtn_momo').is(':checked'))
+{
+	e.preventDefault();
+	swal("Alert","MTN Mobile Money, Coming Soon ..", "info");
+}
+else if($('#cash').is(':checked')) {
+	e.default;
+	// swal("Congratulations", "Booking Successful !", "success");
+	$.ajax({
+		type: "post",
+		url: "/addcustomer",
+		data:{
+			fullname: fname, 
+			 email: email,
+			 pay: paymethod,
+			 checkin_date: datein,
+			 checkout_date: dateout	},
+			//  dataType: 'application/json',
+		success: function (data) {
+            // window.location.reload();
+             alert('Success');
+            swal("Congratulations", data, "success");
+			console.log(data);
+        }, error: function(response,textStatus, err){
+				// swal("Error", response, "error");
+				alert('text status '+textStatus+', err '+err);
+		} 	 
+	});
+// 		swal({
+//   title: 'Booking Summary',
+//  html:
+//     '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
+//     '<b>Check In:</b> &nbsp; &nbsp;'+ datein +'<br>' +
+//     '<b>Check Out:</b> &nbsp; &nbsp;'+ dateout +'<br>'+
+//     '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod +'<br>'+
+//     '<br>'+
+//     '<p><b>Total Amount:</b> <span class="badge badge-success">$1000 </span><br></p>'
+//     ,
+//   type: 'info',
+//   showCancelButton: true,
+//   confirmButtonColor: '#3085d6',
+//   cancelButtonColor: '#d33',
+//   confirmButtonText: 'Confirm Booking'
+// }, function(){
+// 	 $.post("/addcustomer", 
+// 	 	{fullname: fname, 
+// 		email: email,
+// 		pay: paymethod,
+// 		checkin_date: datein,
+// 		checkout_date: dateout,
+// 		phonenumber: mobile 	}, 
+// 		function (response) {
+//             // window.location.reload();
+//             //  alert(response);
+//             swal("Congratulations", response, "success");
+//         });
+// });
+}
+
+// if(datein != ""){
+// 	e.preventDefault();
+// 	swal("Sorry",paymethod, "error");
+// 	// alert(paymethod);
+// }
+    
+});
+
+
+    </script>
+  </body>
+</html>
