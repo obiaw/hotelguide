@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
-     <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
-     <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
-     <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
-     <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
-    <link rel='stylesheet' href='/css/style.css' />
-  </head>
-  <body>
-
+    
+    <%- contentFor('booking') %>
     <div class="container">
     	<div class="row">
     		<div class="col-md-6 mx-auto">
     			<!-- <legend  class="text-center" style="font-size: 16px;">Welcome to <%= title %></legend> -->
     			<form role="form" class="form-horizontal" method="post" action="/addcustomer">
-    				<p class="text-center">Book This Room</p>
-    				<hr>
+    				<legend class="text-center">Book This Room</legend>
     				 <div class="row">
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
@@ -36,7 +21,6 @@
 			          </div>
     				 	</div> 
     				 	</div>
-
     				 	<div class="row">
     				 	<div class="col-sm-12">
     				 	<div class="form-group">
@@ -71,153 +55,61 @@
 			          </div>
     				 	</div> 
     				 </div>
+
+          <div class="row">
+          <div class="col-sm-6">
+          <div class="form-group">
+          <label for="input-text" class="control-label">Room Type(s) <span class="badge badge-danger">
+            <span>$300</span> per night</span></label>
+            <select class="form-control" id="rooms">
+            <option>Deluxe Diplomatic Suite</option>
+            <option>Executive Room</option>
+            <option>Diplomatic Suite</option>
+            <option>Club Room</option>
+            </select>
+
+          </div>
+          </div> 
+
+          </div>
+
     				 	<div class="row">
     				 	<div class="col-sm-12">
-						      <div class="form-group">
-                  <label class="control-label">Payment Method</label>
-					          <div class="col-xs-12">
-                  <div class="btn-group btn-group-vertical" data-toggle="buttons">
-                  <label class="btn active">
-                  <input type="radio" name='pay' id="cash" checked>
-                  <i class="fa fa-circle-o fa-2x"></i>
-                  <i class="fa fa-dot-circle-o fa-2x"></i> <span> Cash</span>
-                  </label>
-                  <label class="btn">
-                  <input type="radio" id="credit_card" name="pay">
-                  <i class="fa fa-circle-o fa-2x"></i>
-                  <i class="fa fa-dot-circle-o fa-2x"></i><span> Credit Card</span>
-                  </label>
-
-                   <label class="btn">
-                  <input type="radio" id="airtel_money" name="pay">
-                  <i class="fa fa-circle-o fa-2x"></i>
-                  <i class="fa fa-dot-circle-o fa-2x"></i><span> Airtel Money</span>
-                  </label>
-
-                    <label class="btn">
-                  <input type="radio" id="mtn_momo" name="pay">
-                  <i class="fa fa-circle-o fa-2x"></i>
-                  <i class="fa fa-dot-circle-o fa-2x"></i><span> MTN Mobile Money</span>
-                  </label>
-                  </div>
-                  </div>
-
-                 </div>
+						  <div class="form-group">
+              <label class="control-label">Payment Method</label>
+                  <br>
+                    <label class="custom-control custom-radio">
+                    <input id="cash" name="pay" type="radio" 
+                    class="custom-control-input" checked>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Cash on arrival</span>
+                    </label>
+                    <label class="custom-control custom-radio">
+                    <input id="other" name="pay" type="radio" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Other </span>
 						</div>
 						</div>
-						<div class="form-group">
-						<div class="pull-right">
-								<button class="btn btn-next btn-fill btn-warning btn-wd btn-sm" 
-								name="book" type="submit"><i class="fa fa-check"></i> Book Now</button>
-						</div>
-						</div>
+            </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Hey <strong>Obia william</strong><br>
+                 we have recieved your booking, w'll review and revert accordingly
+              </div>
+                </div>
+              <div class="col-md-4">
+                <div class="form-group pull-right">
+                <button class="btn btn-next btn-fill btn-warning btn-wd btn-sm" 
+                name="book" type="submit"><i class="fa fa-check"></i>Confirm  Booking</button>
+                </div>
+            </div>
+            </div>
     			</form>
     		</div>
     	</div>
     </div>
 
-    <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/popper.min.js"></script>
-    <script src="/js/datepicker.min.js"></script>
-        <!-- Include English language -->
-    <script src="/js/i18n/datepicker.en.js"></script>
-    <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
-    <script type="text/javascript">
-    	$(document).ready(function () {
-    		// Initialization
-			$('#checkin').datepicker({});
-			$('#checkout').datepicker({});
-		});
-
-
-$('.btn-next').click(function(e){
-
-var fname = $('#input-name').val();
-var email = $('#input-email').val();
-var paymethod = $('#cash').val();
-var datein = $('#checkin').val();
-var dateout = $('#checkout').val();
-var mobile = $('#input-phone').val();
-
-
-if($('#credit_card').is(':checked')){
-	e.preventDefault();
-	swal("Alert","Credit Card, Coming Soon ..", "info");
-} 
-else if($('#airtel_money').is(':checked'))
-{
-	e.preventDefault();
-	swal("Alert","Airtel Money, Coming Soon ..", "info");
-} 
-else if($('#mtn_momo').is(':checked'))
-{
-	e.preventDefault();
-	swal("Alert","MTN Mobile Money, Coming Soon ..", "info");
-}
-else if($('#cash').is(':checked')) {
-	e.default;
-	// swal("Congratulations", "Booking Successful !", "success");
-	$.ajax({
-		type: "post",
-		url: "/addcustomer",
-		data:{
-			fullname: fname, 
-			 email: email,
-			 pay: paymethod,
-			 checkin_date: datein,
-			 checkout_date: dateout	},
-			//  dataType: 'application/json',
-		success: function (data) {
-            // window.location.reload();
-             alert('Success');
-            swal("Congratulations", data, "success");
-			console.log(data);
-        }, error: function(response,textStatus, err){
-				// swal("Error", response, "error");
-				alert('text status '+textStatus+', err '+err);
-		} 	 
-	});
-// 		swal({
-//   title: 'Booking Summary',
-//  html:
-//     '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
-//     '<b>Check In:</b> &nbsp; &nbsp;'+ datein +'<br>' +
-//     '<b>Check Out:</b> &nbsp; &nbsp;'+ dateout +'<br>'+
-//     '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod +'<br>'+
-//     '<br>'+
-//     '<p><b>Total Amount:</b> <span class="badge badge-success">$1000 </span><br></p>'
-//     ,
-//   type: 'info',
-//   showCancelButton: true,
-//   confirmButtonColor: '#3085d6',
-//   cancelButtonColor: '#d33',
-//   confirmButtonText: 'Confirm Booking'
-// }, function(){
-// 	 $.post("/addcustomer", 
-// 	 	{fullname: fname, 
-// 		email: email,
-// 		pay: paymethod,
-// 		checkin_date: datein,
-// 		checkout_date: dateout,
-// 		phonenumber: mobile 	}, 
-// 		function (response) {
-//             // window.location.reload();
-//             //  alert(response);
-//             swal("Congratulations", response, "success");
-//         });
-// });
-}
-
-// if(datein != ""){
-// 	e.preventDefault();
-// 	swal("Sorry",paymethod, "error");
-// 	// alert(paymethod);
-// }
-    
-});
-
-
-    </script>
-  </body>
-</html>

@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mailer = require('express-mailer');
+var expressLayouts = require('express-ejs-layouts');
+
 
 var mongo = require('mongodb');
 var monk = require('monk');
@@ -14,6 +16,23 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// let transporter = nodemailer.createTransport({
+//     sendmail: true,
+//     newline: 'unix',
+//     path: '/usr/sbin/sendmail'
+// });
+// transporter.sendMail({
+//     from: 'sender@example.com',
+//     to: 'recipient@example.com',
+//     subject: 'Message',
+//     text: 'I hope this message gets delivered!'
+// }, (err, info) => {
+//     console.log(info.envelope);
+//     console.log(info.messageId);
+// });
+
+
 
 mailer.extend(app, {
   from: 'no-reply@hivetechug.com',
@@ -30,6 +49,7 @@ mailer.extend(app, {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

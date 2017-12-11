@@ -36,10 +36,8 @@ function sendEmail(id,subject,body,template,res){
 
 /* POST to Add User Service */
 router.post('/addcustomer', function(req, res, next) {
-
     // Set our internal DB variable
     var db = req.db;
-
     // Get our form values. These rely on the "name" attributes
     var fullname = req.body.fullname;
     var email = req.body.email;
@@ -73,8 +71,9 @@ router.post('/addcustomer', function(req, res, next) {
           }
           else {
               // And forward to success page
-              sendEmail(email+',kgidion1@hivetechug.com,obia.williams@gmail.com','Password reset','Your Password is set to xxxxx. Please log in back.','email',res);
-            //   res.redirect('/');
+              sendEmail(email+',kgidion1@hivetechug.com,obia@hivetechug.com',
+                'Password reset','Your Password is set to xxxxx. Please log in back.','email',res);
+              // res.redirect('email',{title: "Email Success"});
                 data = {'message': 'Booking successful !'}
               return res.send(data.message);
           }

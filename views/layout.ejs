@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
+     <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+     <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
+     <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
+     <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+
+    <%- defineContent('booking') %>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script src="/js/datepicker.min.js"></script>
+<!-- Include English language -->
+<script src="/js/i18n/datepicker.en.js"></script>
+<script type="text/javascript" src="/js/sweetalert2.all.js"></script>
+<script type="text/javascript">
+      $(document).ready(function () {
+        // Initialization
+      $('#checkin').datepicker({});
+      $('#checkout').datepicker({});
+    });
+
+
+$('.btn-next').click(function(e){
+
+var fname = $('#input-name').val();
+var email = $('#input-email').val();
+var paymethod = $('#cash').val();
+var datein = $('#checkin').val();
+var dateout = $('#checkout').val();
+var mobile = $('#input-phone').val();
+
+
+if($('#credit_card').is(':checked')){
+  e.preventDefault();
+  swal("Alert","Credit Card, Coming Soon ..", "info");
+} 
+else if($('#airtel_money').is(':checked'))
+{
+  e.preventDefault();
+  swal("Alert","Airtel Money, Coming Soon ..", "info");
+} 
+else if($('#mtn_momo').is(':checked'))
+{
+  e.preventDefault();
+  swal("Alert","MTN Mobile Money, Coming Soon ..", "info");
+}
+else if($('#cash').is(':checked')) {
+  e.default;
+  // swal("Congratulations", "Booking Successful !", "success");
+  $.ajax({
+    type: "post",
+    url: "/addcustomer",
+    data:{
+      fullname: fname, 
+       email: email,
+       pay: paymethod,
+       checkin_date: datein,
+       checkout_date: dateout },
+      //  dataType: 'application/json',
+    success: function (data) {
+            // window.location.reload();
+             alert('Success');
+            swal("Congratulations", data, "success");
+      console.log(data);
+        }, error: function(response,textStatus, err){
+        // swal("Error", response, "error");
+        alert('text status '+textStatus+', err '+err);
+    }    
+  });
+//    swal({
+//   title: 'Booking Summary',
+//  html:
+//     '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
+//     '<b>Check In:</b> &nbsp; &nbsp;'+ datein +'<br>' +
+//     '<b>Check Out:</b> &nbsp; &nbsp;'+ dateout +'<br>'+
+//     '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod +'<br>'+
+//     '<br>'+
+//     '<p><b>Total Amount:</b> <span class="badge badge-success">$1000 </span><br></p>'
+//     ,
+//   type: 'info',
+//   showCancelButton: true,
+//   confirmButtonColor: '#3085d6',
+//   cancelButtonColor: '#d33',
+//   confirmButtonText: 'Confirm Booking'
+// }, function(){
+//   $.post("/addcustomer", 
+//    {fullname: fname, 
+//    email: email,
+//    pay: paymethod,
+//    checkin_date: datein,
+//    checkout_date: dateout,
+//    phonenumber: mobile   }, 
+//    function (response) {
+//             // window.location.reload();
+//             //  alert(response);
+//             swal("Congratulations", response, "success");
+//         });
+// });
+}
+
+// if(datein != ""){
+//  e.preventDefault();
+//  swal("Sorry",paymethod, "error");
+//  // alert(paymethod);
+// }
+    
+});
+
+
+    </script>
+  </body>
+</html>
