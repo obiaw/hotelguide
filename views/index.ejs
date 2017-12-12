@@ -1,4 +1,4 @@
-    
+
     <%- contentFor('booking') %>
     <div class="container">
     	<div class="row">
@@ -12,14 +12,14 @@
 			            <label for="input-text" class="control-label">Full Names</label>
 			            <input type="text" class="form-control" id="input-name" name="fullname" placeholder="Eg. obia william" required>
 			          </div>
-    				 	</div> 
+    				 	</div>
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
 			            <label for="input-text" class="control-label">Email Address</label>
 			            <input type="email" class="form-control" id="input-email" name="email"
 			            placeholder="Eg. obia@example.com" required>
 			          </div>
-    				 	</div> 
+    				 	</div>
     				 	</div>
     				 	<div class="row">
     				 	<div class="col-sm-12">
@@ -27,7 +27,7 @@
 			            <label for="input-phone" class="control-label">Primary Phone Number</label>
 			            <input type="text" class="form-control" id="input-phone" name="phonenumber" placeholder="Eg. +256757415220" required>
 			          </div>
-    				 	</div> 
+    				 	</div>
     				 </div>
 
     				 <div class="row">
@@ -35,32 +35,31 @@
     				 	<div class="form-group">
 			            <label for="input-checkin" class="control-label">Check In:
                    <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
-			            <input type="text" class="form-control datepicker-here" 
+			            <input type="text" class="form-control datepicker-here"
 			            data-language='en'  id="checkin" name="checkin_date" data-multiple-dates-separator=", " data-position='bottom left'
-			            placeholder="mm/dd/yyyy" required> 
-									
+			            placeholder="mm/dd/yyyy" required>
+
 			          </div>
-    				 	</div> 
+    				 	</div>
 
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
-			            <label for="input-checkin" class="control-label">CheckOut: 
+			            <label for="input-checkin" class="control-label">CheckOut:
                     <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
-			           <input type="text" class="form-control datepicker-here" 
+			           <input type="text" class="form-control datepicker-here"
 			            data-language='en'  id="checkout" name="checkout_date"
        					data-multiple-dates-separator=", "
        					data-position='bottom left'
 			            placeholder="mm/dd/yyyy" required>
 
 			          </div>
-    				 	</div> 
+    				 	</div>
     				 </div>
 
           <div class="row">
           <div class="col-sm-6">
           <div class="form-group">
-          <label for="input-text" class="control-label">Room Type(s) <span class="badge badge-danger">
-            <span>$300</span> per night</span></label>
+          <label for="input-text" class="control-label">Room Type(s)</label>
             <select class="form-control" id="rooms">
             <option>Deluxe Diplomatic Suite</option>
             <option>Executive Room</option>
@@ -69,7 +68,7 @@
             </select>
 
           </div>
-          </div> 
+          </div>
 
           </div>
 
@@ -79,7 +78,7 @@
               <label class="control-label">Payment Method</label>
                   <br>
                     <label class="custom-control custom-radio">
-                    <input id="cash" name="pay" type="radio" 
+                    <input id="cash" name="pay" type="radio"
                     class="custom-control-input" checked>
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Cash on arrival</span>
@@ -93,7 +92,7 @@
 						</div>
             </div>
               <div class="row">
-                <div class="col-md-8">
+                <!-- <div class="col-md-8">
                   <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -101,10 +100,10 @@
                 Hey <strong>Obia william</strong><br>
                  we have recieved your booking, w'll review and revert accordingly
               </div>
-                </div>
-              <div class="col-md-4">
+                </div> -->
+              <div class="col-md-4 pull-right">
                 <div class="form-group pull-right">
-                <button class="btn btn-next btn-fill btn-warning btn-wd btn-sm" 
+                <button class="btn btn-next btn-fill btn-warning btn-wd btn-sm"
                 name="book" type="submit"><i class="fa fa-check"></i>Confirm  Booking</button>
                 </div>
             </div>
@@ -113,4 +112,3 @@
     		</div>
     	</div>
     </div>
-

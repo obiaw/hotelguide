@@ -59,9 +59,9 @@ body {
 
 .swal2-popup .swal2-title {
     color: #595959;
-    font-size: 18px !important;
+    font-size: 14px !important;
     text-align: center;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
     text-transform: none;
     position: relative;
     margin: 0 0 .4em;
@@ -71,24 +71,24 @@ body {
 }
 
 .swal2-popup .swal2-content {
-    font-size: 14px !important;
+    font-size: 12px !important;
     text-align: right ;
-    font-weight: 300;
+    font-weight: 100;
     line-height: normal;
     color: #545454;
     word-wrap: break-word;
 }
 .swal2-popup .swal2-content b {
-    font-size: 15px !important;
+    font-size: 10px !important;
     text-align: left !important;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     color: #545454;
     word-wrap: break-word;
 }
 
 .swal2-confirm .swal2-styled{
-	background-color: none !important; 
+	background-color: none !important;
 	border-left-color: none !important;
 	border-right-color: none !important;
 }
@@ -145,7 +145,7 @@ white-space: nowrap;
 vertical-align: top;
 cursor: pointer;
 background-color: none;
-border: 0px solid 
+border: 0px solid
 #c8c8c8;
 border-radius: 3px;
 color: #888888;
@@ -171,6 +171,3 @@ box-shadow: none;
 label span a:hover{
     cursor: pointer;
 }
-
-
-

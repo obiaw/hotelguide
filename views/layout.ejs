@@ -45,21 +45,26 @@ var paymethod = $("input[name='pay']").val();
 var datein = $('#checkin').val();
 var dateout = $('#checkout').val();
 var mobile = $('#input-phone').val();
+var rooms = $('#rooms').val();
 
 
 if($('#credit_card').is(':checked')){
   e.preventDefault();
   swal("Alert","Credit Card, Coming Soon ..", "info");
-} 
+}
+
 else if($('#airtel_money').is(':checked'))
 {
   e.preventDefault();
   swal("Alert","Airtel Money, Coming Soon ..", "info");
-} 
+}
 else if($('#mtn_momo').is(':checked'))
 {
   e.preventDefault();
   swal("Alert","MTN Mobile Money, Coming Soon ..", "info");
+}else if($('#other').is(':checked')){
+  e.preventDefault();
+  swal("Alert","Other payment methods like credit card, mobile money etc coming soon, please choose cash for now","info");
 }
 else if($('#cash').is(':checked')) {
 //  e.default;
@@ -82,8 +87,8 @@ else if($('#cash').is(':checked')) {
 //        swal("Period Your Staying", duration+" days", "info");
 
         swal({
-            title: 'Booking Summary',
-            html: '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
+            title: 'Hello  ' + fname +' your booking summary',
+            html: '<b>Room Type:</b> &nbsp;&nbsp;' + rooms + '<br> ' +
             '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
             '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
             '<b>Payment Method:</b> &nbsp; &nbsp;Cash on arrival<br>' +
@@ -128,7 +133,7 @@ else if($('#cash').is(':checked')) {
 //  swal("Sorry",paymethod, "error");
 //  // alert(paymethod);
 // }
-    
+
 });
 
 
