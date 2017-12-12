@@ -45,12 +45,13 @@ router.post('/addcustomer', function(req, res, next) {
     var checkin_date = req.body.checkin_date;
     var checkout_date = req.body.checkout_date;
     var pay = req.body.pay;
+    var current_date = req.body.current_date;
 
     // Set our collection
     var collection = db.get('usercollection');
 
     collection.find({check_in: checkin_date}, function(err, obj, header){
-      if(err) res.send("There was an error")
+      if(err) res.send("There was an error");
       if(obj.length >= 1) {
         // res.redirect("index",{title: 'Home'})
         res.send("Sorry, we are already booked for that date ....")
@@ -63,7 +64,8 @@ router.post('/addcustomer', function(req, res, next) {
           "phonenumber": phonenumber,
           "check_in": checkin_date,
           "check_out" : checkout_date,
-          "payment method" : pay
+          "payment method" : pay,
+          "booking_date": current_date
       }, function (err, doc) {
           if (err) {
               // If it failed, return error

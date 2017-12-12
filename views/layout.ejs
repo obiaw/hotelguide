@@ -41,7 +41,7 @@ $('.btn-next').click(function(e){
 
 var fname = $('#input-name').val();
 var email = $('#input-email').val();
-var paymethod = $('#cash').val();
+var paymethod = $("input[name='pay']").val();
 var datein = $('#checkin').val();
 var dateout = $('#checkout').val();
 var mobile = $('#input-phone').val();
@@ -62,59 +62,67 @@ else if($('#mtn_momo').is(':checked'))
   swal("Alert","MTN Mobile Money, Coming Soon ..", "info");
 }
 else if($('#cash').is(':checked')) {
-  e.default;
-  // swal("Congratulations", "Booking Successful !", "success");
-  $.ajax({
-    type: "post",
-    url: "/addcustomer",
-    data:{
-      fullname: fname, 
-       email: email,
-       pay: paymethod,
-       checkin_date: datein,
-       checkout_date: dateout },
-      //  dataType: 'application/json',
-    success: function (data) {
-            // window.location.reload();
-             alert('Success');
-            swal("Congratulations", data, "success");
-      console.log(data);
-        }, error: function(response,textStatus, err){
-        // swal("Error", response, "error");
-        alert('text status '+textStatus+', err '+err);
-    }    
-  });
-//    swal({
-//   title: 'Booking Summary',
-//  html:
-//     '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
-//     '<b>Check In:</b> &nbsp; &nbsp;'+ datein +'<br>' +
-//     '<b>Check Out:</b> &nbsp; &nbsp;'+ dateout +'<br>'+
-//     '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod +'<br>'+
-//     '<br>'+
-//     '<p><b>Total Amount:</b> <span class="badge badge-success">$1000 </span><br></p>'
-//     ,
-//   type: 'info',
-//   showCancelButton: true,
-//   confirmButtonColor: '#3085d6',
-//   cancelButtonColor: '#d33',
-//   confirmButtonText: 'Confirm Booking'
-// }, function(){
-//   $.post("/addcustomer", 
-//    {fullname: fname, 
-//    email: email,
-//    pay: paymethod,
-//    checkin_date: datein,
-//    checkout_date: dateout,
-//    phonenumber: mobile   }, 
-//    function (response) {
-//             // window.location.reload();
-//             //  alert(response);
-//             swal("Congratulations", response, "success");
-//         });
-// });
-}
+//  e.default;
+    e.preventDefault();
+    var current_date = new Date().toLocaleDateString();
+    if (datein < current_date) {
+        swal("Incorrect Date", "Checkin date can't be earlier than today's date?", "error");
+    }
+    else if (datein === dateout) {
+        swal("Incorrect Date", "Checkin date can't be the same as Checkout date", "error");
+    }
+    else if (datein > dateout) {
+        swal("Incorrect Dates", "Checkin date can't be later / greater than Checkout date", "error");
+    }
+    else {
+//        var duration = dateout - datein;
+        var timeDiff = Math.abs(new Date(dateout).getTime() - new Date(datein).getTime());
+        var duration = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        var amount = 300 * duration;
+//        swal("Period Your Staying", duration+" days", "info");
 
+        swal({
+            title: 'Booking Summary',
+            html: '<b>Room Type:</b> &nbsp;&nbsp;Deluxe<br> ' +
+            '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
+            '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
+            '<b>Payment Method:</b> &nbsp; &nbsp;Cash on arrival<br>' +
+            '<br>' +
+            '<p><b>Total Amount:</b> <span class="badge badge-success">$' + amount + '</span><br></p>'
+            ,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm Booking'
+        }).then((result)=>{
+            console.log(result.value);
+            if(result.value){
+                $('#input-name').val('');
+                $('#input-email').val('');
+                $('#checkin').val('');
+                $('#checkout').val('');
+                $('#input-phone').val('');
+
+                swal('Congratulations', 'Your Booking order is well received', 'success');
+//                $.ajax({
+//                    type: "POST",
+//                    data: {email: email, pay: paymethod, checkin_date: datein, checkout_date: dateout, phonenumber: mobile, current_date: current_date},
+//                    url: "/addcustomer"
+//                })
+//                .done(function (data) {
+//                    swal('Congratulations', 'Your Booking order is well received', 'success');
+//                })
+//                .error(function (data) {
+//                    swal('Ooops', 'Request unsuccessful, pliz try again', 'error');
+//                })
+            } else {
+//                swal('Ooops', 'Request unsuccessful, pliz try again', 'error');
+                return;
+            }
+        });
+    }
+  }
 // if(datein != ""){
 //  e.preventDefault();
 //  swal("Sorry",paymethod, "error");
