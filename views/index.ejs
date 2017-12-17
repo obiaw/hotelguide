@@ -4,7 +4,7 @@
     	<div class="row">
     		<div class="col-md-6 mx-auto">
     			<!-- <legend  class="text-center" style="font-size: 16px;">Welcome to <%= title %></legend>  method="post" action="/addcustomer" -->
-    			<form role="form" class="form-horizontal">
+    			<form role="form" id="book" class="form-horizontal" action="/addcustomer" method="POST">
     				<legend class="text-center">Book This Room</legend>
     				 <div class="row">
     				 	<div class="col-sm-6">
@@ -78,13 +78,13 @@
               <label class="control-label">Payment Method</label>
                   <br>
                     <label class="custom-control custom-radio">
-                    <input id="cash" name="pay" type="radio"
-                    class="custom-control-input" checked>
+                    <input id="cash" name="pay" value="Pay on Arrival" type="radio"
+                    class="custom-control-input">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Pay on Arrival</span>
                     </label>
                     <label class="custom-control custom-radio">
-                    <input id="other" name="pay" type="radio" class="custom-control-input">
+                    <input id="other" name="pay" value="Other" type="radio" class="custom-control-input">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Other </span>
 					</label>
