@@ -17,8 +17,6 @@
     <%- defineContent('booking') %>
 
 
-
-
 <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
 <!-- <script type="text/javascript" src=" https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -114,8 +112,19 @@ else if($('#cash').is(':checked')) {
                         contentType: "application/json",
                         data: JSON.stringify(form_data),
                         success: function(response) {
-                               swal('Congratulations', 'Your Booking order is well received', 'success');
-                              $('form#book').trigger('reset');
+                               if(response.err) {
+                                  sa_title = 'Sorry'
+                                  sa_msg = response.message
+                                  sa_type = 'warning'
+                                  swal(sa_title, sa_msg, sa_type);
+                                }
+                                else {
+                                    sa_title = 'Success!';
+                                    sa_msg = 'Your Booking request is well received';
+                                    sa_type = 'success';
+                                    swal(sa_title, sa_msg, sa_type);
+                                    $('form#book').trigger('reset');
+                                }                              
                         },
                         error: function(a, b, c){
                               swal('Oops', 'Something went wrong, please try again or contact us!', 'error');
@@ -124,7 +133,7 @@ else if($('#cash').is(':checked')) {
                            });
 
                     }else{
-                      swal('Oops', 'You cancelled your booking!', 'error');
+                      swal('Oops', 'You cancelled your booking!', 'warning');
                             return;
                     }
 
@@ -134,7 +143,7 @@ else if($('#cash').is(':checked')) {
 }
 else{
    swal('Oops', 'Please choose a payment method', 'error');
-                            return;
+   return;
 }
 
 }
