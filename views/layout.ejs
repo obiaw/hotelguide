@@ -125,14 +125,15 @@ else if($('#cash').is(':checked')) {
                                     swal(sa_title, sa_msg, sa_type);
                                     $('form#book').trigger('reset');
                                 }                              
-                        },
+                              },
                         error: function(a, b, c){
                               swal('Oops', 'Something went wrong, please try again or contact us!', 'error');
-                            return;
-                        }
+                                   return;
+                                 }
                            });
 
-                    }else{
+                    }
+                    else{
                       swal('Oops', 'You cancelled your booking!', 'warning');
                             return;
                     }

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var nodemailer = require("nodemailer");
+var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -43,7 +43,12 @@ router.post('/addcustomer', function(req, res) {
             res.send('error'+ err.message);
             console.log(err.message);
           }
-          else {      
+          else {
+            let transporter = nodemailer.createTransport({
+                sendmail: true,
+                newline: 'unix',
+                path: '/usr/sbin/sendmail'
+            });
              var mailoutput = "<html><body>"+
                   "<p>Hello Sheraton Hotel, you have a booking from "+
                   req.body.fullname+". Find full details below; </p><br>"+
@@ -60,14 +65,23 @@ router.post('/addcustomer', function(req, res) {
                   "Thank you for using Hotel Guide as your booking agent. </p>"+
                   "</body></html>";
 
-              nodemailer.mail({
-                  from: 'booking@hotelguide.com',
-                  to: 'rowlandsemmy@gmail.com',
-                  cc: 'obia.williams@gmail.com',
-                  bcc: 'kgidion1@gmail.com',
-                  subject: 'Hotel Booking',
-                  html: mailoutput
-              }, (err, info) => {
+                   transporter.sendMail({
+                        from: 'booking@hotelguide.com',
+                        to: 'rowlandsemmy@gmail.com',
+                        cc: 'obia.williams@gmail.com',
+                        bcc: 'kgidion1@gmail.com',
+                        subject: 'Hotel Booking',
+                        html: mailoutput,
+                   }, 
+              // nodemailer.sendMail({
+              //     from: 'booking@hotelguide.com',
+              //     to: 'rowlandsemmy@gmail.com',
+              //     cc: 'obia.williams@gmail.com',
+              //     bcc: 'kgidion1@gmail.com',
+              //     subject: 'Hotel Booking',
+              //     html: mailoutput
+              // }
+              (err, info) => {
                   console.log(info);
               });
           }
