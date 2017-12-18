@@ -66,7 +66,7 @@ router.post('/addcustomer', function(req, res) {
                   "</body></html>";
 
                    transporter.sendMail({
-                        from: 'booking@hotelguide.com',
+                        from: 'obia@hivetechug.com',
                         to: 'rowlandsemmy@gmail.com',
                         cc: 'obia.williams@gmail.com',
                         bcc: 'kgidion1@gmail.com',
