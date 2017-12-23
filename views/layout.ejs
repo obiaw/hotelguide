@@ -37,17 +37,15 @@
       submitBooking();
     });
 
-
 function submitBooking() {
 
 var fname = $('#input-name').val();
 var email = $('#input-email').val();
-var paymethod = $("#cash").val();
+var paymethod = $('#cash').val();
 var datein = $('#checkin').val();
 var dateout = $('#checkout').val();
 var mobile = $('#input-phone').val();
 var rooms = $('#rooms').val();
-
 
 if($('#other').is(':checked')){
 //  e.preventDefault();
@@ -76,26 +74,27 @@ else if($('#cash').is(':checked')) {
         amount = '$'+amount;
         // console.log(new Date(dateout).getDate() );
 
+        swal({
+                title: 'Hello  ' + fname +' your booking summary',
+                html: '<b>Room Type:</b> &nbsp;&nbsp;' + rooms + '<br> ' +
+                '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
+                '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
+                '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod+'<br>' +
+                '<br>' +
+                '<p><b>Total Amount:</b> <span class="badge badge-success">' + amount + '</span><br></p>',
+              type: 'info',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Confirm Booking',
+              cancelButtonText: 'Cancel Booking',
+              confirmButtonClass: 'btn btn-success',
+              cancelButtonClass: 'btn btn-danger',
+              buttonsStyling: false,
+            preConfirm: function () {
 
-            swal({
-                    title: 'Hello  ' + fname +' your booking summary',
-                    html: '<b>Room Type:</b> &nbsp;&nbsp;' + rooms + '<br> ' +
-                    '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
-                    '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
-                    '<b>Payment Method:</b> &nbsp; &nbsp;'+ paymethod+'<br>' +
-                    '<br>' +
-                    '<p><b>Total Amount:</b> <span class="badge badge-success">' + amount + '</span><br></p>',
-                  type: 'info',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Confirm Booking',
-                  cancelButtonText: 'Cancel Booking',
-                  confirmButtonClass: 'btn btn-success',
-                  cancelButtonClass: 'btn btn-danger',
-                  buttonsStyling: false
-            }).then(function (result) {
-              var form_data = {};
+                return new Promise(function (resolve, reject) {
+                    var form_data = {};
                     form_data.fullname = fname;
                     form_data.email = email;
                     form_data.pay = paymethod;
@@ -105,42 +104,58 @@ else if($('#cash').is(':checked')) {
                     form_data.current_date = current_date;
                     form_data.rooms = rooms;
                     form_data.amount = amount;
-                  if (result.value) {
-                        $.ajax({
+
+                    $.ajax({
                         url: "/addcustomer",
                         type: "POST",
                         contentType: "application/json",
                         data: JSON.stringify(form_data),
                         success: function(response) {
-                               if(response.err) {
-                                  sa_title = 'Sorry'
-                                  sa_msg = response.message
-                                  sa_type = 'warning'
-                                  swal(sa_title, sa_msg, sa_type);
-                                }
-                                else {
-                                    sa_title = 'Success!';
-                                    sa_msg = 'Your Booking request is well received';
-                                    sa_type = 'success';
-                                    swal(sa_title, sa_msg, sa_type);
-                                    $('form#book').trigger('reset');
-                                }                              
-                              },
-                        error: function(a, b, c){
-                              swal('Oops', 'Something went wrong, please try again or contact us!', 'error');
-                                   return;
-                                 }
-                           });
+                            if(response.err) {
+                                sa_title = 'Sorry'
+                                sa_msg = response.message
+                                sa_type = 'warning'
+                            }
+                            else {
+                                sa_title = 'Success!';
+                                sa_msg = 'Your Booking request is well received';
+                                sa_type = 'success';
+                            }
+                            console.log(response);
+                            resolve()
+                        },
+                        error: function(error){
+                            sa_title = 'Oops!';
+//                            sa_msg = 'Something went wrong. Please try again or contact us.';
+                            sa_msg = error.message;
+                            sa_type = 'error';
+//                            console.log(JSON.stringify(error));
+                            reject("error message")
+                        }
+                    })
+                })
+            },
+            allowOutsideClick: false
+        }).then(function (result){
+            if(result.value){
+                if(sa_type === 'warning'){
+                    swal({
+                        title: sa_title,
+                        html: sa_msg,
+                        type: sa_type
+                    });
+                } else {
+                    $('form#book').trigger('reset');
+                    swal({
+                        title: sa_title,
+                        html: sa_msg,
+                        type: sa_type
+                    });
+                }
 
-                    }
-                    else{
-                      swal('Oops', 'You cancelled your booking!', 'warning');
-                            return;
-                    }
-
-                  });
-
-  }
+            } else return;
+        });
+    }
 }
 else{
    swal('Oops', 'Please choose a payment method', 'error');

@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mailer = require('express-mailer');
+// var mailer = require('express-mailer');
 var expressLayouts = require('express-ejs-layouts');
 
 
@@ -17,34 +17,17 @@ var users = require('./routes/users');
 
 var app = express();
 
-// let transporter = nodemailer.createTransport({
-//     sendmail: true,
-//     newline: 'unix',
-//     path: '/usr/sbin/sendmail'
+// mailer.extend(app, {
+//   from: 'no-reply@hivetechug.com',
+//   host: 'smtp.gmail.com', // hostname
+//   secureConnection: true, // use SSL
+//   port: 465, // port for secure SMTP
+//   transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+//   auth: {
+//     user: 'kgidion1@gmail.com',
+//     pass: 'kalemera9209'
+//   }
 // });
-// transporter.sendMail({
-//     from: 'sender@example.com',
-//     to: 'recipient@example.com',
-//     subject: 'Message',
-//     text: 'I hope this message gets delivered!'
-// }, (err, info) => {
-//     console.log(info.envelope);
-//     console.log(info.messageId);
-// });
-
-
-
-mailer.extend(app, {
-  from: 'no-reply@hivetechug.com',
-  host: 'smtp.gmail.com', // hostname 
-  secureConnection: true, // use SSL 
-  port: 465, // port for secure SMTP 
-  transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts 
-  auth: {
-    user: 'kgidion1@gmail.com',
-    pass: 'kalemera9209'
-  }
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
