@@ -14,6 +14,28 @@ router.post('/addcustomer', function(req, res) {
 
     // Get our form values. These rely on the "name" attributes
     var collection = db.get('usercollection');
+
+    /** updating number of available rooms for a particular room type in a particular Hotel **/
+    db.collection('usercollection').find({"hotel.checkout_date": req.body.current_date}, function (err, docs) {
+       if(docs.length >= 1){
+           var hotel_name, room_type;
+           docs.forEach(function (result) {
+               result.hotel.forEach(function (items) {
+                   hotel_name = items.hotelname;
+                   room_type = items.room_type;
+                   db.collection('hotels').find({hotelname: hotel_name, "rooms.roomtype": room_type}, function (err, doc) {
+                       doc.forEach(function (result) {
+                           db.collection('hotels').update(
+                               {_id: result._id, "rooms.room_type": room_type},
+                               {$inc: {"rooms.$.rooms_available": 1}}
+                           );
+                       });
+                   });
+               })
+           })
+       }
+    });
+
     var booking_data = {
         fullname :  req.body.fullname,
         email : req.body.email,
@@ -24,7 +46,8 @@ router.post('/addcustomer', function(req, res) {
         room_type: req.body.rooms,
         amount: req.body.amount,
         checkin_date: req.body.checkin_date,
-        checkout_date: req.body.checkout_date
+        checkout_date: req.body.checkout_date,
+        booking_date: req.body.current_date
     }];
 
   db.collection('hotels').find({rooms:{ $elemMatch: {room_type: req.body.rooms, rooms_available: {$lt: 1} } }}, function(err, obj){
@@ -34,23 +57,15 @@ router.post('/addcustomer', function(req, res) {
       // console.log(obj)
     }
     else {
-        var id='';
-        db.collection("hotels").find({rooms:{$elemMatch: {room_type: req.body.rooms}}},function (err, doc) {
+        db.collection("hotels").find({"rooms.room_type": req.body.rooms},function (err, doc) {
             doc.forEach(function (result) {
                 console.log(result._id);
-                id = result._id;
                 db.collection("hotels").update(
                     {_id: result._id, "rooms.room_type": req.body.rooms},
                     { $inc: {"rooms.$.rooms_available": -1} }
                 );
             });
         });
-
-        // _id -> this is for the document in which the hotel(s) are contained
-        // db.collection("hotels").update(
-        //     {_id: id, "rooms.room_type": req.body.rooms},
-        //     { $inc: {"rooms.$.rooms_available": -1} }
-        // );
 
       collection.insert(booking_data, function(err, customers){
           if(err){
@@ -67,21 +82,21 @@ router.post('/addcustomer', function(req, res) {
                 newline: 'unix',
                 path: '/usr/sbin/sendmail'
             });
-               var mailoutput = "<html><body>"+
-                  "<p>Hello Sheraton Hotel, you have a booking from "+
-                  req.body.fullname+". Find full details below; </p><br>"+
-                  "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
-                  "<b>Email</b>: "+req.body.email+ "<br>"+
-                  "<b>Phonenumber</b>: "+req.body.phonenumber+ "<br>"+
-                  "<b>Room Type</b>: "+req.body.rooms+ "<br>"+
-                  "<b>Total Amount</b>: "+req.body.amount+ "<br>"+
-                  "<b>Check-in Date</b>: "+req.body.checkin_date+ "<br>"+
-                  "<b>Check-out Date</b>: "+req.body.checkout_date+ "<br>"+
-                  "<b>Payment Method</b>: "+req.body.pay+ "<br>"+
-                  "<p>You can confirm this booking by calling the customer "+
-                  "or sending them an email. "+
-                  "Thank you for using Hotel Guide as your booking agent. </p>"+
-                  "</body></html>";
+           var mailoutput = "<html><body>"+
+              "<p>Hello Sheraton Hotel, you have a booking from "+
+              req.body.fullname+". Find full details below; </p><br>"+
+              "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
+              "<b>Email</b>: "+req.body.email+ "<br>"+
+              "<b>Phonenumber</b>: "+req.body.phonenumber+ "<br>"+
+              "<b>Room Type</b>: "+req.body.rooms+ "<br>"+
+              "<b>Total Amount</b>: "+req.body.amount+ "<br>"+
+              "<b>Check-in Date</b>: "+req.body.checkin_date+ "<br>"+
+              "<b>Check-out Date</b>: "+req.body.checkout_date+ "<br>"+
+              "<b>Payment Method</b>: "+req.body.pay+ "<br>"+
+              "<p>You can confirm this booking by calling the customer "+
+              "or sending them an email. "+
+              "Thank you for using Hotel Guide as your booking agent. </p>"+
+              "</body></html>";
 
                transporter.sendMail({
                     from: 'obia@hivetechug.com',
