@@ -67,35 +67,52 @@ router.post('/addcustomer', function(req, res) {
               // console.log(customers);
               // data = {'message': 'Booking successful!'};
               // return res.send(data.message);
-            var transporter = nodemailer.createTransport({
-                sendmail: true,
-                newline: 'unix',
-                path: '/usr/sbin/sendmail'
-            });
-           var mailoutput = "<html><body>"+
-              "<p>Hello Sheraton Hotel, you have a booking from "+
-              req.body.fullname+". Find full details below; </p><br>"+
-              "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
-              "<b>Email</b>: "+req.body.email+ "<br>"+
-              "<b>Phonenumber</b>: "+req.body.phonenumber+ "<br>"+
-              "<b>Room Type</b>: "+req.body.rooms+ "<br>"+
-              "<b>Total Amount</b>: "+req.body.amount+ "<br>"+
-              "<b>Check-in Date</b>: "+req.body.checkin_date+ "<br>"+
-              "<b>Check-out Date</b>: "+req.body.checkout_date+ "<br>"+
-              "<b>Payment Method</b>: "+req.body.pay+ "<br>"+
-              "<p>You can confirm this booking by calling the customer "+
-              "or sending them an email. "+
-              "Thank you for using Hotel Guide as your booking agent. </p>"+
-              "</body></html>";
+            // var transporter = nodemailer.createTransport({
+            //     sendmail: true,
+            //     newline: 'unix',
+            //     path: '/usr/sbin/sendmail'
+            // });
+           // var mailoutput = "<html><body>"+
+           //    "<p>Hello Sheraton Hotel, you have a booking from "+
+           //    req.body.fullname+". Find full details below; </p><br>"+
+           //    "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
+           //    "<b>Email</b>: "+req.body.email+ "<br>"+
+           //    "<b>Phonenumber</b>: "+req.body.phonenumber+ "<br>"+
+           //    "<b>Room Type</b>: "+req.body.rooms+ "<br>"+
+           //    "<b>Total Amount</b>: "+req.body.amount+ "<br>"+
+           //    "<b>Check-in Date</b>: "+req.body.checkin_date+ "<br>"+
+           //    "<b>Check-out Date</b>: "+req.body.checkout_date+ "<br>"+
+           //    "<b>Payment Method</b>: "+req.body.pay+ "<br>"+
+           //    "<p>You can confirm this booking by calling the customer "+
+           //    "or sending them an email. "+
+           //    "Thank you for using Hotel Guide as your booking agent. </p>"+
+           //    "</body></html>";
 
-               transporter.sendMail({
-                    from: 'obia@hivetechug.com',
-                    to: 'rowlandsemmy@gmail.com',
-                    cc: 'obia.williams@gmail.com',
-                    bcc: 'kgidion1@gmail.com',
-                    subject: 'Hotel Booking',
-                    html: mailoutput
-               });
+           //     transporter.sendMail({
+           //          from: 'obia@hivetechug.com',
+           //          to: 'rowlandsemmy@gmail.com',
+           //          cc: 'obia.williams@gmail.com',
+           //          bcc: 'kgidion1@gmail.com',
+           //          subject: 'Hotel Booking',
+           //          html: mailoutput
+           //     });
+
+                  let transporter = nodemailer.createTransport({
+                    sendmail: true,
+                    newline: 'unix',
+                    path: '/usr/sbin/sendmail'
+                });
+                transporter.sendMail({
+                    from: 'obia.williams@gmail.com',
+                    to: 'obia@hivetechug.com',
+                    subject: 'Test Email',
+                    html: "<b>Message Here</b>"
+
+                }, (err, info) => {
+                    console.log(info.envelope);
+                    console.log(info.messageId);
+                });
+
           }
       });
     }
