@@ -73,15 +73,16 @@ router.post('/addcustomer', function(req, res) {
             // console.log(err.message);
           }
           else {
-              // console.log(customers);
-              data = {'message': 'Booking successful !'};
+              console.log(customers);
+              data = {'message': 'Booking successful!'};
               return res.send(data.message);
 
-            var transporter = nodemailer.createTransport({
+            let transporter = nodemailer.createTransport({
                 sendmail: true,
                 newline: 'unix',
                 path: '/usr/sbin/sendmail'
             });
+            
            var mailoutput = "<html><body>"+
               "<p>Hello Sheraton Hotel, you have a booking from "+
               req.body.fullname+". Find full details below; </p><br>"+
