@@ -73,9 +73,9 @@ router.post('/addcustomer', function(req, res) {
             // console.log(err.message);
           }
           else {
-              // console.log(customers);
-              // data = {'message': 'Booking successful!'};
-              // return res.send(data.message);
+              console.log(customers);
+              data = {'message': 'Booking successful!'};
+              return res.send(data.message);
 
             let transporter = nodemailer.createTransport({
                 sendmail: true,
