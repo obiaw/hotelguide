@@ -76,11 +76,11 @@ router.post('/addcustomer', function(req, res) {
               console.log(customers);
               data = {'message': 'Booking successful!'};
               return res.send(data.message);
-
+              
             let transporter = nodemailer.createTransport({
                 sendmail: true,
                 newline: 'unix',
-                path: '/usr/sbin/sendmail'
+                // path: '/usr/sbin/sendmail'
             });
             
            var mailoutput = "<html><body>"+
@@ -105,7 +105,7 @@ router.post('/addcustomer', function(req, res) {
                     cc: 'obia.williams@gmail.com',
                     bcc: 'kgidion1@gmail.com',
                     subject: 'Hotel Booking',
-                    html: mailoutput
+                    html: mailoutput,
                });
           }
       });
