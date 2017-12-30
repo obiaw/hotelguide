@@ -4,9 +4,11 @@
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hotel Guide | Booking Agent</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
      <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="/build/css/intlTelInput.css">
+      <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
      <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
      <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
      <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
@@ -18,24 +20,68 @@
 
 
 <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
-<!-- <script type="text/javascript" src=" https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+ <!--<script type="text/javascript" src=" https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/build/js/intlTelInput.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/popper.min.js"></script>
 <script src="/js/datepicker.min.js"></script>
 <!-- Include English language -->
 <script src="/js/i18n/datepicker.en.js"></script>
 <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
 <script type="text/javascript">
-      $(document).ready(function () {
-        // Initialization
-      $('#checkin').datepicker({});
-      $('#checkout').datepicker({});
-    });
+$(document).ready(function () {
+    // Initialization
+  $("#input-phone").intlTelInput();
+  $('#checkin').datepicker({});
+  $('#checkout').datepicker({});
+});
 
-    $('.btn-next').click(function(e){
-      e.preventDefault();
-      submitBooking();
-    });
+$('.btn-next').on('click',function(event){
+    event.preventDefault();
+    event.stopPropagation();
+  anyBlankFields(event);
+//  submitBooking();
+});
+
+function anyBlankFields(event) {
+    var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    var fname = $('#input-name').val();
+    var email = $('#input-email').val();
+    var paymethod = $('#cash').val();
+    var datein = $('#checkin').val();
+    var dateout = $('#checkout').val();
+    var mobile = $('#input-phone').val();
+    var rooms = $('#rooms').val();
+
+    if(fname == "") $("#fname_err").show();
+
+    if(mobile == "") $("#mobile_err").show();
+//  else {
+//      var extension = $("#input-phone").intlTelInput("getNumber");
+//      var output = $("#mobile_err");
+//      output.text("International: " + extension);
+//      console.log(output.innerHTML);
+//  }
+
+    if(datein == "") $("#datein_err").show();
+
+    if(dateout == "") $("#dateout_err").show();
+
+    if(email == "") $("#email_err").show();
+    else if(email != ""){
+        if(!email_regex.test(email)){
+            document.getElementById('email_err').innerHTML = "Email must contain an '@' character and a . before server name";
+            $("#email_err").show();
+            console.log($("#email_err").val());
+        }
+    }
+    else{
+        submitBooking();
+//      console.log(mobile);
+    }
+
+}
 
 function submitBooking() {
 
@@ -56,15 +102,18 @@ else if($('#cash').is(':checked')) {
     var current_date = new Date().toLocaleDateString();
     date_in = new Date(datein).toLocaleDateString();
     date_out = new Date(dateout).toLocaleDateString()
-    // console.log(new Date(datein).toLocaleDateString(), current_date)
+//     console.log("Date in: "+ new Date(datein).getTime(), "Date out: "+new Date(dateout).getTime())
+    var date_in_tm = new Date(datein).getTime();
+    var date_out_tm = new Date(dateout).getTime();
+    var cur_dt_tm = new Date().getTime();
 
-    if (date_in < current_date) {
+    if (date_in_tm < cur_dt_tm) {
         swal("Incorrect Date", "Checkin date can't be earlier than today's date?", "error");
     }
-    else if (date_in === date_out) {
+    else if (date_in_tm === date_out_tm) {
         swal("Incorrect Date", "Checkin date can't be the same as Checkout date", "error");
     }
-    else if (date_in > date_out) {
+    else if (date_in_tm > date_out_tm) {
         swal("Incorrect Dates", "Checkin date can't be later / greater than Checkout date", "error");
     }
     else {
@@ -164,7 +213,7 @@ else{
 
 }
 
-    </script>
+</script>
       
   </body>
 </html>

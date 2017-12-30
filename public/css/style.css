@@ -171,3 +171,7 @@ box-shadow: none;
 label span a:hover{
     cursor: pointer;
 }
+
+.chide{
+    display: none;
+}
