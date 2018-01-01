@@ -175,3 +175,6 @@ label span a:hover{
 .chide{
     display: none;
 }
+.intl-tel-input{
+	width:100% !important;
+}

@@ -6,13 +6,13 @@
     			<form role="form" id="book" class="form-horizontal" action="/addcustomer" method="POST">
     				<legend class="text-center">Book This Room</legend>
     				 <div class="row">
-    				 	<!--<div class="">-->
-    				 	<div class="col-sm-6 form-group">
+    				 	<div class="col-sm-6">
+    				 	<div class="form-group">
 			            <label for="input-text" class="control-label">Full Names</label>
 			            <input type="text" class="form-control" id="input-name" name="fullname" placeholder="Eg.obia william" required>
 			          	<p class="alert alert-danger chide" id="fname_err" >This field is required</p>
 						</div>
-    				 	<!--</div>-->
+    				 	</div>
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
 			            <label for="input-email" class="control-label">Email Address</label>
@@ -79,7 +79,7 @@
               <label class="control-label">Payment Method</label>
                   <br>
                     <label class="custom-control custom-radio">
-                    <input id="cash" name="pay" value="Pay on Arrival" type="radio"
+                    <input id="cash" name="pay" checked="true" value="Pay on Arrival" type="radio"
                     class="custom-control-input">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Pay on Arrival</span>

@@ -22,7 +22,7 @@ function sendEmail(req,res){
             cc  : 'obia@hivetechug.com',
             bcc :'kgidion1@gmail.com',
             subject: "Hotel Booking",
-            html: "<p>Hello Sheraton Hotel, you have a booking from "+
+            html: "<p>Hello there, i would like to make a reservation with your organization "+
             req.body.fullname+". Find full details below; </p><br>"+
             "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
             "<b>Email</b>: "+req.body.email+ "<br>"+
@@ -32,12 +32,10 @@ function sendEmail(req,res){
             "<b>Check-in Date</b>: "+req.body.checkin_date+ "<br>"+
             "<b>Check-out Date</b>: "+req.body.checkout_date+ "<br>"+
             "<b>Payment Method</b>: "+req.body.pay+ "<br>"+
-            "<p>You can confirm this booking by calling the customer "+
-            "or sending them an email. "+
             "Thank you for using Hotel Guide as your booking agent. </p>"},
         (err,info)=>{
-        console.log(info);
-    console.log(err);
+        //console.log(info);
+        //console.log(err);
 });
 
 }
@@ -94,7 +92,7 @@ router.post('/addcustomer', function(req, res) {
     else {
         db.collection("hotels").find({"rooms.room_type": req.body.rooms},function (err, doc) {
             doc.forEach(function (result) {
-                console.log(result._id);
+                //console.log(result._id);
                 db.collection("hotels").update(
                     {_id: result._id, "rooms.room_type": req.body.rooms},
                     { $inc: {"rooms.$.rooms_available": -1} }

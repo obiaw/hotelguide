@@ -40,13 +40,13 @@ $(document).ready(function () {
   $('#checkout').datepicker({});
 });
 
-$('.btn-next').on('click',function(event){
+$('form#book').on('submit',function(event){
     event.preventDefault();
     event.stopPropagation();
-  anyBlankFields(event);
-  submitBooking();
+    //anyBlankFields(event);
+    submitBooking();
 });
-
+/*
 function anyBlankFields(event) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     var fname = $('#input-name').val();
@@ -96,6 +96,7 @@ function anyBlankFields(event) {
 ////      console.log(mobile);
 //    }
 }
+*/
 
 function submitBooking() {
 
@@ -168,7 +169,6 @@ function submitBooking() {
                         form_data.current_date = current_date;
                         form_data.rooms = rooms;
                         form_data.amount = amount;
-
                         $.ajax({
                             url: "/addcustomer",
                             type: "POST",
@@ -185,7 +185,7 @@ function submitBooking() {
                                     sa_msg = 'Your Booking request is well received';
                                     sa_type = 'success';
                                 }
-                                console.log(response);
+                                //console.log(response);
                                 resolve()
                             },
                             error: function (error) {
