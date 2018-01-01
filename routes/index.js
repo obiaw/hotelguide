@@ -18,8 +18,8 @@ function sendEmail(req,res){
 
     transporter.sendMail({
             from: req.body.email,
-            to  : 'obia.williams@gmail.com',
-            cc  : 'obia@hivetechug.com',
+            to  : 'rowlandsemmy@gmail.com',
+            cc  : 'obia.williams@gmail.com',
             bcc :'kgidion1@gmail.com',
             subject: "Hotel Booking",
             html: "<p>Hello there, i would like to make a reservation with your organization "+
@@ -39,6 +39,7 @@ function sendEmail(req,res){
 });
 
 }
+
 
 /* POST to Add User Service */
 router.post('/addcustomer', function(req, res) {
