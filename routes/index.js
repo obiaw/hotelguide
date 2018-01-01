@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'HotelGuide Bot'});
 });
 
+
 function sendEmail(req,res){
 
     let transporter = nodemailer.createTransport({
@@ -112,8 +113,6 @@ router.post('/addcustomer', function(req, res) {
               data = {'message': 'Booking successful!'};
               // sendEmail(req,res);
               return res.send(data.message);
-
-
           }
       });
     }
