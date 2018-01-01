@@ -33,8 +33,9 @@
 <script type="text/javascript">
 $(document).ready(function () {
     // Initialization
-$("#input-phone").intlTelInput();
-//  $("#input-phone").intlTelInput();
+  $("#input-phone").intlTelInput({
+    nationalMode: false
+  });
   $('#checkin').datepicker({});
   $('#checkout').datepicker({});
 });
@@ -60,11 +61,6 @@ function anyBlankFields(event) {
 
     if(mobile == "") $("#mobile_err").show();
     else {
-//      var extension = $("#input-phone").intlTelInput("getNumber");
-//        var output = $("#mobile_err");
-//      output.innerHTML = "International: " + extension;
-//      console.log(extension);
-
         var extension = $("#input-phone");
         if ($.trim(mobile)) {
             if (!extension.intlTelInput("isValidNumber")) {
