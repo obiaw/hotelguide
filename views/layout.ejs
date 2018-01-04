@@ -38,6 +38,8 @@ $(document).ready(function () {
   });
   $('#checkin').datepicker({});
   $('#checkout').datepicker({});
+
+
 });
 
 $('.btn-next').on('click',function(event){
@@ -46,6 +48,16 @@ $('.btn-next').on('click',function(event){
     anyBlankFields();
 //    submitBooking();
 });
+
+function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ( (charCode > 31 && charCode < 48) || charCode > 57) {
+            return false;
+        }
+       
+        return true;
+    }
 
 function anyBlankFields() {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
@@ -89,8 +101,9 @@ function anyBlankFields() {
         $("#mobile_err").hide();
         var extension = $("#input-phone");
         if ($.trim(mobile)) {
+
             if (!extension.intlTelInput("isValidNumber")) {
-                document.getElementById('mobile_err').innerHTML = "Invalid number";
+                document.getElementById('mobile_err').innerHTML = "Invalid number, numbers only pleases";
                 $("#mobile_err").show();
                 console.log($("#mobile_err").val());
                 return;

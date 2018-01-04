@@ -25,9 +25,10 @@
     				 	<div class="col-sm-12">
     				 	<div class="form-group">
 			            <label for="input-phone" class="control-label">Primary Phone Number</label>
-			            <input type="tel" class="form-control" id="input-phone" name="phonenumber" required>
-                            <p class="alert alert-danger chide" id="mobile_err" >This field is required</p>
-                        </div>
+			            <input type="tel" class="form-control" id="input-phone" name="phonenumber" 
+                  onkeypress="return isNumber(event)" required ="" maxlength="15">
+                    <p class="alert alert-danger chide" id="mobile_err" >This field is required</p>
+                    </div>
     				 	</div>
     				 </div>
 
