@@ -43,11 +43,11 @@ $(document).ready(function () {
 $('.btn-next').on('click',function(event){
     event.preventDefault();
     event.stopPropagation();
-    anyBlankFields(event);
-    // submitBooking();
+    anyBlankFields();
+    //submitBooking();
 });
 
-function anyBlankFields(event) {
+function anyBlankFields() {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     var fname = $('#input-name').val();
     var email = $('#input-email').val();
@@ -74,28 +74,27 @@ function anyBlankFields(event) {
                 return 1;
             }
         }
-    }
+            }
 
     if(datein == "") $("#datein_err").show();
 
     if(dateout == "") $("#dateout_err").show();
 
     if(email == "") $("#email_err").show();
-    else if(email != ""){
-        if (!email_regex.test(email)) {
-            document.getElementById('email_err').innerHTML = "Email must contain an '@' character and a . before server name";
-            $("#email_err").show();
-            console.log($("#email_err").val());
-        } else {
-//            event.default();
-            submitBooking();
-        }
+      else if(email != ""){
+            if (!email_regex.test(email)) {
+                document.getElementById('email_err').innerHTML = "Email must contain an '@' character and a . before server name";
+                $("#email_err").show();
+                console.log($("#email_err").val());
             }
-  else{
-     submitBooking();
-     console.log(mobile);
-  }
-}
+         }
+         else{
+            submitBooking();
+         } 
+     
+
+    }
+
 
 
 function submitBooking() {
