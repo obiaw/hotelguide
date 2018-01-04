@@ -44,7 +44,7 @@ $('.btn-next').on('click',function(event){
     event.preventDefault();
     event.stopPropagation();
     anyBlankFields();
-    //submitBooking();
+//    submitBooking();
 });
 
 function anyBlankFields() {
@@ -57,45 +57,64 @@ function anyBlankFields() {
     var mobile = $('#input-phone').val();
     var rooms = $('#rooms').val();
 
-    if(fname == "") $("#fname_err").show();
+    if(fname == "") {
+        $("#fname_err").show();
+        return;
+    }
+    else if(fname != ""){
+        $("#fname_err").hide();
+    }
 
-    if(mobile == "") $("#mobile_err").show();
-    else {
+    if(email == "") {
+        $("#email_err").show();
+        return;
+    }
+    else if(email != ""){
+        $("#email_err").hide();
+        if (!email_regex.test(email)) {
+            document.getElementById('email_err').innerHTML = "Email must contain an '@' character and a . before server name";
+            $("#email_err").show();
+            console.log($("#email_err").val());
+            return;
+        } else {
+            $("#email_err").hide();
+        }
+    }
+
+    if(mobile == "") {
+        $("#mobile_err").show();
+        return;
+    }
+    else if(mobile != "") {
+        $("#mobile_err").hide();
         var extension = $("#input-phone");
         if ($.trim(mobile)) {
             if (!extension.intlTelInput("isValidNumber")) {
                 document.getElementById('mobile_err').innerHTML = "Invalid number";
                 $("#mobile_err").show();
                 console.log($("#mobile_err").val());
+                return;
             } else {
-                $("#mobile_err").addClass("hide");
+                $("#mobile_err").hide();
                 mobile = extension.intlTelInput("getNumber");
                 console.log(mobile);
-                return 1;
             }
         }
-            }
-
-    if(datein == "") $("#datein_err").show();
-
-    if(dateout == "") $("#dateout_err").show();
-
-    if(email == "") $("#email_err").show();
-      else if(email != ""){
-            if (!email_regex.test(email)) {
-                document.getElementById('email_err').innerHTML = "Email must contain an '@' character and a . before server name";
-                $("#email_err").show();
-                console.log($("#email_err").val());
-            }
-         }
-         else{
-            submitBooking();
-         } 
-     
-
     }
 
+    if(datein == "") {
+        $("#datein_err").show();
+        return;
+    } else if(datein != "") $("#datein_err").hide();
 
+    if(dateout == "") {
+        $("#dateout_err").show();
+        return;
+    } else if(dateout != "") $("#dateout_err").hide();
+//    else{
+    submitBooking();
+//    }
+}
 
 function submitBooking() {
 
