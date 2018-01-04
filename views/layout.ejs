@@ -40,13 +40,13 @@ $(document).ready(function () {
   $('#checkout').datepicker({});
 });
 
-$('form#book').on('submit',function(event){
+$('.btn-next').on('click',function(event){
     event.preventDefault();
     event.stopPropagation();
-    //anyBlankFields(event);
-    submitBooking();
+    anyBlankFields(event);
+    // submitBooking();
 });
-/*
+
 function anyBlankFields(event) {
     var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
     var fname = $('#input-name').val();
@@ -90,13 +90,13 @@ function anyBlankFields(event) {
 //            event.default();
             submitBooking();
         }
-    }
-//    else{
-//        submitBooking();
-////      console.log(mobile);
-//    }
+            }
+  else{
+     submitBooking();
+     console.log(mobile);
+  }
 }
-*/
+
 
 function submitBooking() {
 
