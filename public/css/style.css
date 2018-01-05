@@ -15,6 +15,7 @@ body {
   padding: 2%;
   font-size: 14px;
   line-height: 1.6;
+  background: #eee;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
@@ -177,4 +178,27 @@ label span a:hover{
 }
 .intl-tel-input{
 	width:100% !important;
+}
+p.alert-danger{
+    padding: 0px;
+    text-align: center;
+    font-weight: 700;
+    background: transparent;
+}
+
+ section {
+    padding: 35px 0;
+      }
+      .white-bg {
+    background: #fff;
+    border-radius: 4px;
+}
+.form-group label.control-label{
+    color: #444;
+    font-weight: 900;
+
+}
+
+.swal2-confirm {
+    margin: 10px;
 }

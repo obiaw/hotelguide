@@ -34,7 +34,9 @@
 $(document).ready(function () {
     // Initialization
   $("#input-phone").intlTelInput({
+    
     nationalMode: false
+    
   });
   $('#checkin').datepicker({});
   $('#checkout').datepicker({});
@@ -55,7 +57,7 @@ function isNumber(evt) {
         if ( (charCode > 31 && charCode < 48) || charCode > 57) {
             return false;
         }
-       
+
         return true;
     }
 
@@ -149,11 +151,12 @@ function submitBooking() {
         date_in = new Date(datein).toLocaleDateString();
         date_out = new Date(dateout).toLocaleDateString()
 //     console.log("Date in: "+ new Date(datein).getTime(), "Date out: "+new Date(dateout).getTime())
-        var date_in_tm = new Date(datein).getTime();
-        var date_out_tm = new Date(dateout).getTime();
-        var cur_dt_tm = new Date(current_date).getTime();
-//             console.log("Date in: "+ date_in_tm, "Current Date: "+cur_dt_tm)
-
+        var date_in_tm =  new Date(date_in).getTime();
+        var date_out_tm = new Date(date_out).getTime();
+        var cur_dt_tm =   new Date(current_date).getTime();
+        
+        console.log("Date in: "+ date_in_tm, "Current Date: "+ cur_dt_tm)
+                
         if (date_in_tm < cur_dt_tm) {
             swal("Incorrect Date", "Checkin date can't be earlier than today's date?", "error");
         }

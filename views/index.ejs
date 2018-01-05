@@ -1,24 +1,26 @@
 
     <%- contentFor('booking') %>
+    <section>
     <div class="container">
     	<div class="row">
-    		<div class="col-md-6 mx-auto">
+    		<div class="col-md-6 mx-auto white-bg">
     			<form role="form" id="book" class="form-horizontal" action="/addcustomer" method="POST">
+            <br>
     				<legend class="text-center">Book This Room</legend>
     				 <div class="row">
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
-			            <label for="input-text" class="control-label">Full Names</label>
+			            <label for="input-text" class="control-label">Full Name</label>
 			            <input type="text" class="form-control" id="input-name" name="fullname" placeholder="Eg.obia william" required>
-			          	<p class="alert alert-danger chide" id="fname_err" >This field is required</p>
-						</div>
+			          	<p class="alert alert-danger chide" id="fname_err" >Full Name field is required</p>
+						  </div>
     				 	</div>
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
 			            <label for="input-email" class="control-label">Email Address</label>
 			            <input type="email" class="form-control" id="input-email" name="email" placeholder="Eg.obia@example.com" required>
-                        <p class="alert alert-danger chide" id="email_err">This field is required</p>
-                        </div>
+                  <p class="alert alert-danger chide" id="email_err">Email Address is required</p>
+                </div>
     				 	</div>
     				 	</div>
     				 	<div class="row">
@@ -27,7 +29,7 @@
 			            <label for="input-phone" class="control-label">Primary Phone Number</label>
 			            <input type="tel" class="form-control" id="input-phone" name="phonenumber" 
                   onkeypress="return isNumber(event)" required ="" maxlength="15">
-                    <p class="alert alert-danger chide" id="mobile_err" >This field is required</p>
+                    <p class="alert alert-danger chide" id="mobile_err" >A valid phone number is require is required, select country from dropdown</p>
                     </div>
     				 	</div>
     				 </div>
@@ -35,25 +37,23 @@
     				 <div class="row">
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
-			            <label for="input-checkin" class="control-label">Check In:
-                   <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
+			            <label for="input-checkin" class="control-label">Check In Date</label>
 			            <input type="text" class="form-control datepicker-here"
 			            data-language='en'  id="checkin" name="checkin_date" data-multiple-dates-separator=", " data-position='bottom left'
-			            placeholder="mm/dd/yyyy" required>
-                            <p class="alert alert-danger chide" id="datein_err" >This field is required</p>
+			            placeholder="MM/DD/YYYY" required>
+                  <p class="alert alert-danger chide" id="datein_err" >Check In Date is required</p>
 			          </div>
     				 	</div>
 
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
-			            <label for="input-checkin" class="control-label">CheckOut:
-                    <span><a class="btn btn-sm custom"><i class="fa fa-calendar"></i></a></span></label>
+			            <label for="input-checkin" class="control-label">Check Out Date</label>
 			           <input type="text" class="form-control datepicker-here"
 			            data-language='en'  id="checkout" name="checkout_date"
        					data-multiple-dates-separator=", "
        					data-position='bottom left'
-			            placeholder="mm/dd/yyyy" required>
-                            <p class="alert alert-danger chide" id="dateout_err" >This field is required</p>
+			            placeholder="MM/DD/YYYY" required>
+                  <p class="alert alert-danger chide" id="dateout_err" >Check Out Date is required</p>
 			          </div>
     				 	</div>
     				 </div>
@@ -61,7 +61,7 @@
           <div class="row">
           <div class="col-sm-6">
           <div class="form-group">
-          <label for="input-text" class="control-label">Room Type(s)</label>
+          <label for="input-text" class="control-label">Confirm Room Type</label>
             <select class="form-control" id="rooms">
             <option>Deluxe Diplomatic Suite</option>
             <option>Executive Room</option>
@@ -80,31 +80,24 @@
               <label class="control-label">Payment Method</label>
                   <br>
                     <label class="custom-control custom-radio">
-                    <input id="cash" name="pay" checked="true" value="Pay on Arrival" type="radio"
+                    <input id="cash" name="pay" checked="true" value="Pay on Arrival" 
+                    type="radio"
                     class="custom-control-input">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Pay on Arrival</span>
                     </label>
                     <label class="custom-control custom-radio">
-                    <input id="other" name="pay" value="Other" type="radio" class="custom-control-input">
+                    <input id="other" name="pay" value="Other" type="radio" 
+                    class="custom-control-input">
                     <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Other </span>
+                    <span class="custom-control-description">Others </span>
 					</label>
 						</div>
 						</div>
             </div>
               <div class="row">
-                <!-- <div class="col-md-8">
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                Hey <strong>Obia william</strong><br>
-                 we have recieved your booking, w'll review and revert accordingly
-              </div>
-                </div> -->
-              <div class="col-md-4 pull-right">
-                <div class="form-group pull-right">
+              <div class="col-md-4 mx-xl-auto">
+                <div class="form-group">
                 <button class="btn btn-next btn-fill btn-warning btn-wd btn-sm"
                 name="book" type="submit"><i class="fa fa-check"></i>Confirm  Booking</button>
                 </div>
@@ -114,3 +107,4 @@
     		</div>
     	</div>
     </div>
+</section>
