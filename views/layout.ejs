@@ -155,7 +155,7 @@ function submitBooking() {
         var date_out_tm = new Date(date_out).getTime();
         var cur_dt_tm =   new Date(current_date).getTime();
         
-        console.log("Date in: "+ date_in_tm, "Current Date: "+ cur_dt_tm)
+        //console.log("Date in: "+ date_in, "Current Date: "+ current_date)
                 
         if (date_in_tm < cur_dt_tm) {
             swal("Incorrect Date", "Checkin date can't be earlier than today's date?", "error");

@@ -22,8 +22,7 @@ function sendEmail(req,res){
             cc  : 'obia.williams@gmail.com',
             bcc :'kgidion1@gmail.com',
             subject: "Hotel Booking",
-            html: "<p>Hello there, i would like to make a reservation with your organization "+
-            req.body.fullname+". Find full details below; </p><br>"+
+            html: "<p>Hello there, i would like to make a reservation with your organization. Find full details below; </p><br>"+
             "<b>Fullname:</b> "+req.body.fullname+ "<br>"+
             "<b>Email</b>: "+req.body.email+ "<br>"+
             "<b>Phonenumber</b>: "+req.body.phonenumber+ "<br>"+
