@@ -9,7 +9,7 @@ var app = require('../app');
 var debug = require('debug')('hotelguide:server');
 var http = require('http');
 
-var port = normalizePort(process.env.PORT || '3000','0.0.0.0');
+var port = normalizePort(process.env.PORT || '3000','beta.hivetechug.com');
 app.set('port', port);
 
 /**
