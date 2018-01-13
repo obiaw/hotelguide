@@ -43,7 +43,7 @@ server.on('listening', onListening);
 
 
 httpsServer.listen(httpsPort, function(){
-  console.log("Express server listening on port " + port);
+  //console.log("Express server listening on port " + port);
 });
 
 /**
