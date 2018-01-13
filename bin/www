@@ -13,7 +13,7 @@ var https = require('https');
 var fs = require('fs');
 var httpsPort = 3443;
 
-var port = normalizePort(process.env.PORT || '3000','0.0.0.0');
+var port = normalizePort(process.env.PORT || '3000','beta.hivetechug.com');
 app.set('port', port);
 
 
