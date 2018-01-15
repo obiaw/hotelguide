@@ -16,6 +16,7 @@ var db = monk('localhost:27017/nodetest1');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var donains = ['https://www.messenger.com/', 'https://www.facebook.com/']
 var app = express();
 
 // mailer.extend(app, {
@@ -39,7 +40,7 @@ app.use(expressLayouts);
 // Sets "X-Frame-Options: ALLOW-FROM http://example.com".
 app.use(frameguard({
   action: 'allow-from',
-  domain: 'https://www.messenger.com/'
+  domain: donains
 }));
 
 // uncomment after placing your favicon in /public
