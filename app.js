@@ -40,7 +40,7 @@ app.use(expressLayouts);
 // Sets "X-Frame-Options: ALLOW-FROM http://example.com".
 app.use(frameguard({
   action: 'allow-from',
-  domain: donains
+  domain: 'https://www.messenger.com/'
 }));
 
 // uncomment after placing your favicon in /public

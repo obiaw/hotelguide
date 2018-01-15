@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-   res.set('X-Frame-Options','Allow\-From https://www.messenger.com/');
+   // res.set('X-Frame-Options','Allow\-From https://www.messenger.com/');
   res.render('index', { title: 'HotelGuide Bot'});
 });
 
