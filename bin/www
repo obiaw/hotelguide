@@ -8,19 +8,33 @@
 var app = require('../app');
 var debug = require('debug')('hotelguide:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
+
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000','0.0.0.0');
+var port = normalizePort(process.env.PORT || '3000','beta.hivetechug.com');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
+
+ // we'll generate these files in the next step
+
+var options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+
 var server = http.createServer(app);
+
+var httpsServer = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -30,6 +44,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+httpsServer.listen(3443, () => console.log("listening on port 3443 for https"));
 /**
  * Normalize a port into a number, string, or false.
  */
