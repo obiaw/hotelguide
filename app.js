@@ -40,7 +40,7 @@ app.use(expressLayouts);
 app.use(frameguard({
   action: 'allow-from',
   domain: 'https://www.messenger.com/'
-}))
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
