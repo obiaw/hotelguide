@@ -22,9 +22,9 @@ app.set('port', port);
  // we'll generate these files in the next step
 
 var options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-  ca:  fs.readFileSync('ca.pem')
+  key:  fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+ // ca:   fs.readFileSync('ca.pem')
 };
 
 
