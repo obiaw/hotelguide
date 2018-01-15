@@ -24,7 +24,7 @@ app.set('port', port);
 var options = {
   key:  fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
- // ca:   fs.readFileSync('ca.pem')
+  ca:   fs.readFileSync('ca.pem')
 };
 
 
