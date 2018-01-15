@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 //var forceHTTPS = require("expressjs-force-https").forceHTTPS;
 
+var frameguard = require('frameguard');
+
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/nodetest1');
@@ -33,6 +35,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+
+// Allow from a specific host.
+// Sets "X-Frame-Options: ALLOW-FROM https://beta.hivetechug.com:3443".
+app.use(frameguard({
+  action: 'allow-from',
+  domain: 'https://beta.hivetechug.com:3443'
+}))
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

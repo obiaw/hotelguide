@@ -17,6 +17,8 @@
     "express-force-ssl": "^0.3.2",
     "express-mailer": "^0.3.1",
     "expressjs-force-https": "^2.0.0",
+    "frameguard": "^3.0.0",
+    "helmet": "^3.9.0",
     "mongodb": "^2.2.33",
     "monk": "^6.0.5",
     "morgan": "~1.9.0",

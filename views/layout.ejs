@@ -26,6 +26,21 @@
 
     </script>
 
+    <script type="text/javascript">
+
+        // Set up the url for our iframe, and get the current domain
+
+    var url    = 'https://beta.hivetechug.com:3443';
+    var domain = window.location.protocol + '//' + window.location.host;
+// Create the iframe
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+// Set the src, and pass along the domain as a query param
+
+    iframe.src = url + '?domain=' + domain;
+    
+    </script>
+
     <%- defineContent('booking') %>
 
 <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
