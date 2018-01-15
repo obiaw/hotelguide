@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // var mailer = require('express-mailer');
 var expressLayouts = require('express-ejs-layouts');
-
+//var forceHTTPS = require("expressjs-force-https").forceHTTPS;
 
 var mongo = require('mongodb');
 var monk = require('monk');
@@ -48,6 +48,8 @@ app.use(function(req,res,next){
     next();
 });
 
+//app.use(forceHTTPS);
+
 app.use('/', index);
 app.use('/users', users);
 
@@ -68,5 +70,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
