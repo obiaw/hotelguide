@@ -49,7 +49,7 @@ app.use(helmet({
     action: 'allow-from',
     domain: 'https://www.messenger.com/',
   }
-}))
+}));
 
 
 // uncomment after placing your favicon in /public
