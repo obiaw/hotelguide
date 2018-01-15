@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 // var mailer = require('express-mailer');
 var expressLayouts = require('express-ejs-layouts');
 //var forceHTTPS = require("expressjs-force-https").forceHTTPS;
-
-var frameguard = require('frameguard');
+var frameguard = require('frameguard')
 
 var mongo = require('mongodb');
 var monk = require('monk');
@@ -37,10 +36,10 @@ app.set('view engine', 'ejs');
 app.use(expressLayouts);
 
 // Allow from a specific host.
-// Sets "X-Frame-Options: ALLOW-FROM https://beta.hivetechug.com:3443".
+// Sets "X-Frame-Options: ALLOW-FROM http://example.com".
 app.use(frameguard({
   action: 'allow-from',
-  domain: 'https://beta.hivetechug.com:3443'
+  domain: 'https://www.messenger.com/'
 }))
 
 // uncomment after placing your favicon in /public
