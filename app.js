@@ -17,7 +17,7 @@ var db = monk('localhost:27017/nodetest1');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var donains = ['https://www.messenger.com/', 'https://www.facebook.com/'];
+var domains = ['https://www.messenger.com/', 'https://www.facebook.com/'];
 var app = express();
 
 // mailer.extend(app, {

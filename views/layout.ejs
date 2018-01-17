@@ -20,12 +20,15 @@
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+      js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
       fjs.parentNode.insertBefore(js, fjs);
+      
          }(document, 'script', 'Messenger'));
 
         window.extAsyncInit = function () {
             // the Messenger Extensions JS SDK is done loading
+            var isSupported = MessengerExtensions.isInExtension(); 
+            alert(isSupported);
             MessengerExtensions.getUserID(function success(uids) {
                 var psid = uids.psid;//This is your page scoped sender_id
                 alert("This is the user's psid " + psid);
