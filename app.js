@@ -44,12 +44,16 @@ app.use(expressLayouts);
 //   domain: 'https://www.messenger.com/',
 // }));
 
-app.use(helmet({
-  frameguard: {
-    action: 'allow-from',
-    domain: 'https://www.messenger.com/',
-  }
-}));
+// app.use(helmet({
+//   frameguard: {
+//     action: 'allow-from',
+//     domain: ['https://www.messenger.com/', 'https://www.facebook.com/']
+//   }
+// }));
+
+// Implement X-Frame: Allow-From
+app.use(helmet.frameguard('allow-from', ['https://www.messenger.com/', 'https://www.facebook.com/']));
+
 
 
 // uncomment after placing your favicon in /public
