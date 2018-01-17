@@ -18,6 +18,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var domains = ['https://www.messenger.com/', 'https://www.facebook.com/'];
+
 var app = express();
 
 // mailer.extend(app, {
@@ -52,7 +53,7 @@ app.use(expressLayouts);
 // }));
 
 // Implement X-Frame: Allow-From
-app.use(helmet.frameguard('allow-from', ['https://www.messenger.com/', 'https://www.facebook.com/']));
+app.use(helmet.frameguard('allow-from', ['https://beta.hivetechug.com:3443','https://www.messenger.com/', 'https://www.facebook.com/']));
 
 
 
