@@ -16,6 +16,7 @@ var db = monk('localhost:27017/nodetest1');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var dashboard = require('./routes/dashboard');
 
 var domains = ['https://www.messenger.com/', 'https://www.facebook.com/'];
 
@@ -55,8 +56,6 @@ app.use(expressLayouts);
 // Implement X-Frame: Allow-From
 app.use(helmet.frameguard('allow-from', ['https://beta.hivetechug.com:3443','https://www.messenger.com/', 'https://www.facebook.com/']));
 
-
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -75,6 +74,7 @@ app.use(function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

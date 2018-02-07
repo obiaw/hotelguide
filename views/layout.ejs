@@ -3,7 +3,7 @@
   <head>
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hotel Guide | Booking Agent</title>
+    <title>Hotel Guide Bot | Dashboard</title>
       <link rel="stylesheet" type="text/css" href="/css/bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css">
      <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
@@ -12,7 +12,12 @@
      <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
      <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
      <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
+     <link href="/product.css" rel="stylesheet">
+      <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/css/style.css' />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="/dataTables.bootstrap4.css" rel="stylesheet">
+     
   </head>
 
     <script type="text/javascript">
@@ -73,13 +78,31 @@
 <script src="/build/js/prism.js"></script>
 <script src="/build/js/intlTelInput.js"></script>
 <script src="/build/js/utils.js"></script>
+ <script src="/assets/js/vendor/popper.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/vendor/holder.min.js"></script>
+
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/popper.min.js"></script>
 <script src="/js/datepicker.min.js"></script>
+
+    <script src="/jquery.dataTables.js"></script>
+    <script src="/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="/datatables.js"></script>
+
 <!-- Include English language -->
 <script src="/js/i18n/datepicker.en.js"></script>
 <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
+<script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
 <script type="text/javascript">
+
 $(document).ready(function () {
     // Initialization
   $("#input-phone").intlTelInput({

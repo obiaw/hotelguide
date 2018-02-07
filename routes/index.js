@@ -45,7 +45,6 @@ function sendEmail(req,res){
 router.post('/addcustomer', function(req, res) {
     // Set our internal DB variable
     var db = req.db;
-
     // Get our form values. These rely on the "name" attributes
     var collection = db.get('usercollection');
 
@@ -54,7 +53,7 @@ router.post('/addcustomer', function(req, res) {
        if(docs.length >= 1){
            var hotel_name, room_type;
            docs.forEach(function (result) {
-               result.hotel.forEach(function (items) {
+               result.hotel.forEach(function (items){
                    hotel_name = items.hotelname;
                    room_type = items.room_type;
                    db.collection('hotels').find({hotelname: hotel_name, "rooms.roomtype": room_type}, function (err, doc) {
