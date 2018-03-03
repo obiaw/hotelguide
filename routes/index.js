@@ -2,9 +2,16 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
+<<<<<<< HEAD
 /* GET hotels */
 router.get('/', function (req, res, next) {
     res.render('index');
+=======
+/* GET home page. */
+router.get('/', function(req, res, next) {
+   // res.set('X-Frame-Options','https://www.facebook.com/');
+  res.render('index', { title: 'HotelGuide Bot'});
+>>>>>>> master
 });
 
 /* GET hotel rooms */
@@ -100,7 +107,11 @@ function sendEmail(req,res){
 router.post('/addcustomer', function(req, res) {
     // Set our internal DB variable
     var db = req.db;
+<<<<<<< HEAD
 
+=======
+    // Get our form values. These rely on the "name" attributes
+>>>>>>> master
     var collection = db.get('usercollection');
 
     /** updating number of available rooms for a particular room type in a particular Hotel **/
@@ -108,7 +119,7 @@ router.post('/addcustomer', function(req, res) {
        if(docs.length >= 1){
            var hotel_name, room_type;
            docs.forEach(function (result) {
-               result.hotel.forEach(function (items) {
+               result.hotel.forEach(function (items){
                    hotel_name = items.hotelname;
                    room_type = items.room_type;
                    db.collection('hotels').find({hotelname: hotel_name, "rooms.room_type": room_type}, function (err, doc) {
