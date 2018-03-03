@@ -27,7 +27,6 @@ $("#hotel").on('change', function () {
     });
 });
 
-
 // reaction due to room_type selected
 $("#rooms").on('change', function () {
     var room = $("#rooms :selected").text();

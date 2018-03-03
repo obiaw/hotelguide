@@ -94,9 +94,7 @@
 <!-- Include English language -->
 <script src="/js/i18n/datepicker.en.js"></script>
 <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="/js/hotel_rooms.js"></script>
-=======
 <script>
       Holder.addTheme('thumb', {
         bg: '#55595c',
@@ -104,7 +102,6 @@
         text: 'Thumbnail'
       });
     </script>
->>>>>>> master
 <script type="text/javascript">
 
 $(document).ready(function () {
@@ -374,15 +371,12 @@ function submitBooking() {
                                     sa_msg = 'Your Booking request is well received';
                                     sa_type = 'success';
                                 }
-                                //console.log(response);
                                 resolve()
                             },
                             error: function (error) {
                                 sa_title = 'Oops!';
-//                            sa_msg = 'Something went wrong. Please try again or contact us.';
                                 sa_msg = error.message;
                                 sa_type = 'error';
-//                            console.log(JSON.stringify(error));
                                 reject("error message")
                             }
                         })
