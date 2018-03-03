@@ -2,11 +2,68 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'HotelGuide Bot'});
+/* GET hotels */
+router.get('/', function (req, res, next) {
+    res.render('index');
 });
 
+/* GET hotel rooms */
+router.post('/get_hotel_rooms', function (req, res, next) {
+    var db = req.db;
+    var collection = db.get('hotels');
+    var hotel_name = req.body.hotel;
+    var results = [];
+    if (hotel_name === 'Choose Hotel'){
+        results = [];
+        res.send(results);
+    }else{
+        collection.find({hotelname: hotel_name}, function (err, docs) {
+            docs.forEach(function (values) {
+                values.rooms.forEach(function (result) {
+                    results.push({"room":result.room_type,"price":result.price});
+                });
+            });
+            res.send(results);
+        });
+    }
+});
+
+/* GET chosen room's price */
+router.post('/get_room_price', function (req, res, next) {
+    var db = req.db;
+    var collection = db.get('hotels');
+    var hotel_name = req.body.hotel;
+    var room = req.body.room;
+    var results = [];
+    var room_price = 0;
+    if (hotel_name === 'Choose Hotel'){
+        results = [];
+        res.send(results);
+    }else{
+        collection.find({hotelname: hotel_name}, function (err, docs) {
+            docs.forEach(function (values) {
+                values.rooms.forEach(function (result) {
+                    if(result.room_type === room) {
+                        results.push(result.price);
+                    }
+                });
+            });
+            res.send(results);
+        });
+    }
+});
+
+function get_room(hotel, hotel_object) {
+    var our_rooms = [];
+    hotel_object.forEach(function (values) {
+        if(values.hotelname === hotel){
+            values.rooms.forEach(function (result) {
+                our_rooms.push(result.price);
+            });
+        }
+    });
+    return our_rooms;
+}
 
 function sendEmail(req,res){
 
@@ -39,13 +96,11 @@ function sendEmail(req,res){
 
 }
 
-
 /* POST to Add User Service */
 router.post('/addcustomer', function(req, res) {
     // Set our internal DB variable
     var db = req.db;
 
-    // Get our form values. These rely on the "name" attributes
     var collection = db.get('usercollection');
 
     /** updating number of available rooms for a particular room type in a particular Hotel **/
@@ -56,7 +111,7 @@ router.post('/addcustomer', function(req, res) {
                result.hotel.forEach(function (items) {
                    hotel_name = items.hotelname;
                    room_type = items.room_type;
-                   db.collection('hotels').find({hotelname: hotel_name, "rooms.roomtype": room_type}, function (err, doc) {
+                   db.collection('hotels').find({hotelname: hotel_name, "rooms.room_type": room_type}, function (err, doc) {
                        doc.forEach(function (result) {
                            db.collection('hotels').update(
                                {_id: result._id, "rooms.room_type": room_type},
@@ -72,7 +127,8 @@ router.post('/addcustomer', function(req, res) {
     var booking_data = {
         fullname :  req.body.fullname,
         email : req.body.email,
-        phonenumber : req.body.phonenumber
+        phonenumber : req.body.phonenumber,
+        status: req.body.status
    };
     booking_data.hotel = [{
         hotelname: "Serena Hotel",
@@ -87,12 +143,10 @@ router.post('/addcustomer', function(req, res) {
     if(err) res.send("There was an error");
     if(obj.length >= 1) {
       res.send({message:"Sorry, the rooms of that Type are all booked",err: true});
-      // console.log(obj)
     }
     else {
         db.collection("hotels").find({"rooms.room_type": req.body.rooms},function (err, doc) {
             doc.forEach(function (result) {
-                //console.log(result._id);
                 db.collection("hotels").update(
                     {_id: result._id, "rooms.room_type": req.body.rooms},
                     { $inc: {"rooms.$.rooms_available": -1} }
@@ -103,13 +157,10 @@ router.post('/addcustomer', function(req, res) {
       collection.insert(booking_data, function(err, customers){
           if(err){
             res.send({message:"There was a problem adding the information to the database. "+ err.message});
-            // console.log(err.message);
           }
           else {
-              // console.log(customers);
               sendEmail(req,res);
               data = {'message': 'Booking successful!'};
-              // sendEmail(req,res);
               return res.send(data.message);
           }
       });
