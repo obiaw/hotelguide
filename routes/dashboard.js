@@ -11,6 +11,7 @@ router.get('/rooms', function(req,res,next){
 	res.render('rooms', {title: "Hotel Guide Dashboard"});
 });
 
+
 router.get('/admin_login', function(req,res){
 	res.render('login',{title: "Hotel Guide Login"});
 });
