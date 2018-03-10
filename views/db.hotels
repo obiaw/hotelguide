@@ -1,0 +1,179 @@
+db.hotels.insert(
+{ 
+	"hotelname" : "Nanjin Hotel",
+	"rooms" : [
+        {
+            "room_type" : "Double", 
+            "price" : "$88", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Single", 
+            "price" : "$88", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe suite", 
+            "price" : "$228", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe single room", 
+            "price" : "$128", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe double room", 
+            "price" : "228", 
+            "rooms_available" : 10
+        }
+    ]
+    });
+
+  db.hotels.insert(
+{   "hotelname" : "Victoria Travel Hotel", 
+    "rooms" : [
+        {
+            "room_type" : "single", 
+            "price" : "$25", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "double", 
+            "price" : "$30", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe", 
+            "price" : "$45", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "standard twin room", 
+            "price" : "$35", 
+            "rooms_available" : 10
+        }
+    ]
+    });
+
+    db.hotels.insert(
+{  "hotelname" : "HBT Russel Hotel", 
+    "rooms" : [
+        {
+            "room_type" : "Deluxe", 
+            "price" : "$65", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Executive", 
+            "price" : "$80", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Budget twin", 
+            "price" : "$90", 
+            "rooms_available" : 10
+        }
+    ]});
+    
+db.hotels.insert({  "hotelname" : "Prime Rose Hotel", 
+    "rooms" : [
+        {
+            "room_type" : "Standard", 
+            "price" : "$14", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe double", 
+            "price" : "$19.60", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Executive suite", 
+            "price" : "$228", 
+            "rooms_available" : 10
+        }
+    ]
+    });
+
+     
+   
+    db.hotels.insert({"hotelname" : "Hotel Africana", 
+    "rooms" : [
+        {
+            "room_type" : "Executive", 
+            "price" : "$400", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Club", 
+            "price" : "$399", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe suite", 
+            "price" : "$228", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Diplomatic suite", 
+            "price" : "$488", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe diplomatic suite", 
+            "price" : "300", 
+            "rooms_available" : 10
+        }
+    ]});
+
+ 
+     db.hotels.insert({"hotelname" : "Sheraton Hotel", 
+    "rooms" : [
+        {
+            "room_type" : "Executive room", 
+            "price" : "$400", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Club rooom", 
+            "price" : "$399", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Diplomatic suite", 
+            "price" : "$488", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "Deluxe single suite", 
+            "price" : "$300", 
+            "rooms_available" : 10
+        }
+    ]});
+
+
+      db.hotels.insert({"hotelname" : "Speke Apartments", 
+    "rooms" : [
+        {
+            "room_type" : "one bedroom apartment", 
+            "price" : "$239", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "two bedroom apartment", 
+            "price" : "$372", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "three bedroom apartment", 
+            "price" : "$455", 
+            "rooms_available" : 10
+        }, 
+        {
+            "room_type" : "pent house", 
+            "price" : "542", 
+            "rooms_available" : 10
+        }
+    ]});
+    

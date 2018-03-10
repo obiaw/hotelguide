@@ -12,8 +12,8 @@
      <link rel="stylesheet" type="text/css" href="/css/sweetalert2.css">
      <link rel="stylesheet" type="text/css" href="/css/magic-check.min.css">
      <link href="/css/datepicker.min.css" rel="stylesheet" type="text/css">
-     <link href="/product.css" rel="stylesheet">
-      <link href="/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- <link href="/product.css" rel="stylesheet"> -->
+      <!-- <link href="/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel='stylesheet' href='/css/style.css' />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
      <link href="/dataTables.bootstrap4.css" rel="stylesheet">
@@ -230,13 +230,15 @@ function submitBooking() {
         }
         else {
             swal({
-                title: 'Hello  ' + fname + ' your booking summary',
-                html: '<b>Room Type:</b> &nbsp;&nbsp;' + rooms + '<br> ' +
-                '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
-                '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
-                '<b>Payment Method:</b> &nbsp; &nbsp;' + paymethod + '<br>' +
+                title: 'Hello  ' + fname + ' here is your booking summary',
+                html: '<div class="sumarry">'+
+                '<span class ="title">Room Type:</span> <p>' + rooms + '</p><br> ' +
+                '<span class ="title">Check In:</span> <p>' + datein + '</p><br>' +
+                '<span class ="title">Check Out:</span> <p>' + dateout + '</p><br>' +
+                '<span class ="title">Payment Method:</span> <p>' + paymethod + '</p><br>' +
                 '<br>' +
-                '<p><b>Total Amount:</b> <span class="badge badge-success">' + amount + '</span><br></p>',
+                '<span class ="title">Total Amount:</span> <p class="price">' + amount + '</p><br>'+
+                '</br></br>'+'</div>',
                 type: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -323,14 +325,18 @@ function submitBooking() {
         }
         else {
             swal({
-                title: 'Hello  ' + fname + ' your booking summary',
-                html: '<b>Room Type:</b> &nbsp;&nbsp;' + rooms + '<br> ' +
-                '<b>Check In:</b> &nbsp; &nbsp;' + datein + '<br>' +
-                '<b>Check Out:</b> &nbsp; &nbsp;' + dateout + '<br>' +
-                '<b>Payment Method:</b> &nbsp; &nbsp;' + paymethod + '<br>' +
+                title: '<b>Hola!' + fname + ' here is your booking summary</b>',
+
+                html: '<div class="sumarry">'+
+                '<span class ="title">Room Type:</span> <p>' + rooms + '</p><br> ' +
+                '<span class ="title">Check In:</span> <p>' + datein + '</p><br>' +
+                '<span class ="title">Check Out:</span> <p>' + dateout + '</p><br>' +
+                '<span class ="title">Payment Method:</span> <p>' + paymethod + '</p><br>' +
                 '<br>' +
-                '<p><b>Total Amount:</b> <span class="badge badge-success">' + amount + '</span><br></p>'+
-                '<b>NB: Your Room will be taken if you don\'t pay now</b>',
+                '<span class ="title">Total Amount:</span> <p class="price">' + amount + '</p><br>'+
+                '</br></br>'+
+                '<span class="in">Note that Your Room will be taken if you don\'t pay now</span>'+ '</div>',
+                
                 type: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

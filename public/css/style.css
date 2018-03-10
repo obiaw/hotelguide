@@ -202,3 +202,90 @@ p.alert-danger{
 .swal2-confirm {
     margin: 10px;
 }
+
+.swal2-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border: 5px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-radius: 50%;
+    margin: 20px auto 30px;
+    padding: 0;
+    position: relative;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.swal2-icon.swal2-info {
+    font-family: 'Open Sans', sans-serif;
+    color: #0397D6 !important;
+    border-color: #0397D6 !important;
+    font-size: 30px !important;
+    line-height: 40px !important;
+    text-align: center;
+}
+.swal2-content  span.in {
+    font-size: 12px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    line-height: normal;
+    color: red !important;
+    word-wrap: break-word;
+    font-style: italic !important;
+}
+.swal2-content .sumarry{
+    border:1px solid #eee !important;
+    width: 70% !important;
+    position: relative !important;
+    left: 15% !important;
+    padding: 10px !important;
+
+}
+.swal2-content span.title{
+    font-weight: 700 !important;
+    color: #555 !important;
+    text-align: left !important;
+    float: left !important; 
+    margin-left: 10% !important;
+   /*padding-bottom: 5px !important;*/
+
+}
+
+.swal2-content .sumarry > p{
+    color: darkgreen !important;
+    margin-bottom: 0 !important;
+    font-weight: 900 !important;
+    /*float: right !important;*/
+    text-align: right !important;
+
+}
+
+.swal2-content .sumarry > p.price{
+    font-weight: 900 !important;
+    color: #000 !important;
+    /*background: rgba(0,0,0,.9) !important;*/
+        /*padding: 10px !important;*/
+    }
+
+.swal2-popup .swal2-title {
+    /*color: #595959;*/
+    color: darkblue !important;
+
+    font-size: 16px !important;
+    text-align: center;
+    font-weight: 400 !important;
+    text-transform: none;
+    position: relative;
+    margin: 0 0 .4em;
+    padding: 0;
+    display: block;
+    word-wrap: break-word;
+}
