@@ -45,3 +45,12 @@ $("#rooms").on('change', function () {
         }
     });
 });
+
+$(document).ready(function(){
+
+    var data = 
+    $.ajax({
+
+    });
+
+});

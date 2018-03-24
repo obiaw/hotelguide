@@ -33,6 +33,7 @@ var nodemailer = require('nodemailer');
         }
     });
 
+   
     /* GET chosen room's price */
     router.post('/get_room_price', function (req, res, next) {
         var db = req.db;
