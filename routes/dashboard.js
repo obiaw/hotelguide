@@ -5,14 +5,24 @@ router.get('/', function(req, res,next){
 
 	var db = req.db;
     var collection = db.get('usercollection');
-
+    var result = [];
     collection.find({}, function(err, data){
     
 	if (err) {
 		res.send({message: "There was a problem adding the information to the database. " + err.message});
 	}
 	else{
-		console.log(data);
+
+		// console.log(data);
+        data.forEach(function(output){
+            // console.log(output);
+            // output.hotel.forEach(function(h){
+            //     console.log(h);
+            // });
+            result.push(output);
+           
+        });
+         console.log(result);
 		res.render("dashboard",{"data" : data});
 	}
 
@@ -41,7 +51,7 @@ router.get('/otherbookings', function(req,res,next){
 });
 
 
-router.get('/admin_login', function(req,res){
+router.get('/login', function(req,res){
 	res.render('login',{title: "Hotel Guide Login"});
 });
 
