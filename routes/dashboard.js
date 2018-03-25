@@ -5,7 +5,8 @@ router.get('/', function(req, res,next){
 
 	var db = req.db;
     var collection = db.get('usercollection');
-    var result = [];
+    var result = {};
+    var arr = [];
     collection.find({}, function(err, data){
     
 	if (err) {
@@ -14,15 +15,17 @@ router.get('/', function(req, res,next){
 	else{
 
 		// console.log(data);
-        data.forEach(function(output){
-            // console.log(output);
-            // output.hotel.forEach(function(h){
-            //     console.log(h);
-            // });
-            result.push(output);
+        // data.forEach(function(docs){
+        //     console.log(output);
+        //     output.hotel.forEach(function(h){
+        //         console.log(h);
+        //     });
+        //     result= Object.assign({},docs);
+        //     arr.push(result);
            
-        });
-         console.log(result);
+        // });
+
+        // console.log(result);
 		res.render("dashboard",{"data" : data});
 	}
 

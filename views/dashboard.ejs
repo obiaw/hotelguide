@@ -32,25 +32,25 @@
     	<div class="container-fluid" style="background: #fff; height: 100%;">
     		<br><br>
     		<div class="row">
-    			<div class="col-sm-12">
+    			<div class="col-sm-9">
          		<p class="txt-bold">Reservations Direct for Hotel Guide</p>
               		<% if((data.length) > 0) {%>
               		<table class="table table-bordered table-">
                     <thead>
 	
                     <tr>
-		                <th>Full Name</th>
+		                <th>Name</th>
 		                <th>Email</th>
 		                <th >Phone</th>
 		                <th >Check In</th>
 		                <th >Check Out</th>
 		                <th >Room Type</th>
-                    <th >Rooms Available (Remaining)</th>
-		                <th >Payment Method</th>
+                    <!-- <th >Rooms Available (Remaining)</th> -->
+		                <th >Payment</th>
 		                <th >Amount ($)</th>
                     <th >Status</th>
                     <th >Actions</th>
-                        </tr>
+                    </tr>
 
                        
                     </thead>
@@ -60,21 +60,25 @@
                             <td><%= users.fullname %></td>
                             <td><%= users.email %></td>
                             <td><%= users.phonenumber %></td>
-                            <td><%= users.hotel.checkin_date %></td>
-                            <td><%= users.hotel.checkout_date %></td>
-                            <td><%= users.hotel.room_type %></td>
-                            <td><%= users.hotel.amount %></td>
-                            <td><%= users.hotel.status %></td>
-                             <td><%= users.hotel.status %></td>
-                            <td><%if(users.status !== "paid"){%>
-                            	<i class="fa fa-circle-o text-orange "></i> <%= users.status %>
-                            	<%}else{%>
-                            	<i class="fa fa-circle-o text-green "></i> <%= users.status %>
-                            	<% }%>
+                            <% users.hotel.forEach(function(k){%>
+                            <td><%= k.checkin_date %></td>
+                            <td><%= k.checkout_date %></td>
+                            <td><%= k.room_type %></td>
+                            <td><%= k.payment_method %></td>
+                             <td><%= k.amount %></td>
+                           <!--  <td><%= k.status %></td> -->
+                             <!-- <td><%= k.amount %></td> -->
+                            <%})%>
+                                <td><%if(users.status !== "paid"){%>
+                              <i class="fa fa-circle-o text-orange "></i> <%= users.status %>
+                              <a href="#"> <span class="badge badge-success">Update</span></a>
+                              <%}else{%>
+                              <i class="fa fa-circle-o text-green "></i> <%= users.status %>
+                              <% }%>
                             </td>
                              <td>
-                               <a href="#"><i class="fa fa-trash"></i> Release Room</a>
-                               <!-- <a href="#"><i class="fa fa-plus"></i> Extend</a> -->
+                               <a href="#"> Release</a>
+                               
                              </td>
                         </tr>
                         <%});%>
@@ -87,12 +91,12 @@
               	
 
       	 </div>
-      	 <!-- <div class="col-sm-3"> 
+      	 <div class="col-sm-3"> 
       	 	<p class="txt-bold">Room Types and Status</p>
       	 		<ul class="list-groug" id="rooms_av">
       	 			<li class="list-unstyled"><p><b>Delux Single</b>  &nbsp;<span class="badge badge-info">10</span></p></li>	
       	 		</ul>
-      	 </div> -->
+      	 </div>
 
     </div>
 
