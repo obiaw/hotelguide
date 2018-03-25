@@ -6,7 +6,59 @@
     		<div class="col-md-6 mx-auto white-bg">
     			<form role="form" id="book" class="form-horizontal" action="/addcustomer" method="POST">
             <br>
-    				<legend class="text-center">Book This Room</legend>
+    				<legend class="text-center">Hotel Reservation Form</legend>
+
+            <div class="row">
+          <div class="col-sm-6">
+          <div class="form-group">
+          <label for="input-text" class="control-label">Hotel</label>
+            <select class="form-control" id="hotel">
+        <option value="Choose Hotel" >Choose Hotel</option>
+        <option value="Serena Hotel">Serena Hotel</option>
+        <!-- <option value="Speke Apartments">Speke Apartments</option> -->
+        <option value="Nanjin Hotel">Nanjin Hotel</option>
+        <option value="Victoria Travel Hotel">Victoria Travel Hotel</option>
+        <option value="HBT Russel Hotel">HBT Russel Hotel</option>
+        <option value="Prime Rose Hotel">Prime Rose Hotel</option>
+        <option value="Hotel Africana">Hotel Africana</option>
+        <option value="Sheraton Hotel">Sheraton Hotel</option>
+        <option value="Speke Apartments">Speke Apartments</option>
+            </select>
+          </div>
+          </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="input-text" class="control-label">Confirm Room Type</label>
+                  <input type="hidden" id="room_price">
+          <select class="form-control" id="rooms">
+          <option>Choose RoomType</option>
+          </select>
+        </div>
+      </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="input-checkin" class="control-label">Check In Date</label>
+                  <input type="text" class="form-control datepicker-here"
+                  data-language='en'  id="checkin" name="checkin_date" data-multiple-dates-separator=", " data-position='bottom left'
+                  placeholder="MM/DD/YYYY" required>
+                  <p class="alert alert-danger chide" id="datein_err" >Check In Date is required</p>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+              <div class="form-group">
+                  <label for="input-checkin" class="control-label">Check Out Date</label>
+                 <input type="text" class="form-control datepicker-here"
+                  data-language='en'  id="checkout" name="checkout_date"
+                data-multiple-dates-separator=", "
+                data-position='bottom left'
+                  placeholder="MM/DD/YYYY" required>
+                  <p class="alert alert-danger chide" id="dateout_err" >Check Out Date is required</p>
+                </div>
+              </div>
+             </div>
     				 <div class="row">
     				 	<div class="col-sm-6">
     				 	<div class="form-group">
@@ -34,57 +86,12 @@
     				 	</div>
     				 </div>
 
-    				 <div class="row">
-    				 	<div class="col-sm-6">
-    				 	<div class="form-group">
-			            <label for="input-checkin" class="control-label">Check In Date</label>
-			            <input type="text" class="form-control datepicker-here"
-			            data-language='en'  id="checkin" name="checkin_date" data-multiple-dates-separator=", " data-position='bottom left'
-			            placeholder="MM/DD/YYYY" required>
-                  <p class="alert alert-danger chide" id="datein_err" >Check In Date is required</p>
-			          </div>
-    				 	</div>
-
-    				 	<div class="col-sm-6">
-    				 	<div class="form-group">
-			            <label for="input-checkin" class="control-label">Check Out Date</label>
-			           <input type="text" class="form-control datepicker-here"
-			            data-language='en'  id="checkout" name="checkout_date"
-       					data-multiple-dates-separator=", "
-       					data-position='bottom left'
-			            placeholder="MM/DD/YYYY" required>
-                  <p class="alert alert-danger chide" id="dateout_err" >Check Out Date is required</p>
-			          </div>
-    				 	</div>
-    				 </div>
-
-          <div class="row">
-          <div class="col-sm-6">
-          <div class="form-group">
-          <label for="input-text" class="control-label">Hotel</label>
-            <select class="form-control" id="hotel">
-				<option value="Choose Hotel" >Choose Hotel</option>
-				<option value="Serena Hotel">Serena Hotel</option>
-				<option value="Speke Apartments">Speke Apartments</option>
-            </select>
-          </div>
-          </div>
-		  <div class="col-sm-6">
-			  <div class="form-group">
-				  <label for="input-text" class="control-label">Confirm Room Type</label>
-                  <input type="hidden" id="room_price">
-				  <select class="form-control" id="rooms">
-					<option>Choose RoomType</option>
-				  </select>
-			  </div>
-		  </div>
-          </div>
 
     				 	<div class="row">
     				 	<div class="col-sm-12">
 						  <div class="form-group">
               <label class="control-label">Payment Method</label>
-                  <br>
+                  <!-- <br> -->
                     <label class="custom-control custom-radio">
                     <input id="cash" name="pay" value="Pay on Arrival"
                     type="radio"
@@ -97,8 +104,8 @@
                     class="custom-control-input">
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">Others </span>
-					</label>
-						</div>
+					         </label>
+						    </div>
 						</div>
             </div>
               <div class="row">

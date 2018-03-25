@@ -1,16 +1,32 @@
-    <nav class="sticky-top">
-        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">
-        <a class="py-2" href="/dashboard">
-          <i class="fa  fa-dribbble"></i> HotelGuideBot
-        </a>
-      </h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/dashboard">Dashboard</a>
-        <a class="p-2 text-dark" href="/dashboard/rooms">Bookings</a>
-        <!-- <a class="p-2 text-dark" href="#">Bookings</a> -->
-        <!-- <a class="p-2 text-dark" href="#">Pricing</a> -->
-      </nav>
-      <a class="btn btn-outline-primary" href="#">Sign out</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" 
+   style="background-color:#E8EAF6; color:aliceblue;height: 40px;">
+         <!-- <a class="navbar-brand" href="#" style="color:dimgrey">Web Admin</a> -->
+      &nbsp;<a class="navbar-brand" href="#"><i class="fa fa-codepen"></i> HotelGuide Admin</a>
     </div>
-    </nav>
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/otherbookings">Other Bookings <span class="sr-only">(current)</span></a>
+      </li>
+     
+    </ul>
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log Out <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+  </div>
+</nav>

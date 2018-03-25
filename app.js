@@ -12,11 +12,11 @@ var helmet = require('helmet');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');
+var db = monk('localhost:27017/hotelguide');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var dashboard = require('./routes/dashboard');
+var admin = require('./routes/dashboard');
 
 var domains = ['https://www.messenger.com/', 'https://www.facebook.com/'];
 
@@ -74,7 +74,7 @@ app.use(function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/dashboard', dashboard);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
