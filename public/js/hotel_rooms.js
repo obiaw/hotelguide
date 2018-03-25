@@ -1,3 +1,27 @@
+$(document).ready(function(){
+
+    var rooms_av = $('#rooms_av').val();
+
+    $.ajax({
+        url: "/admin/get_rooms_availability",
+        types: 'GET',
+        // dataType: 'json',
+        success:function(response){
+            // console.log(response);
+            var arr = [];
+            response.forEach(function(r){
+                arr.push("<li class=\"list-unstyled\"><p><b>"+ r.type+"</b>  &nbsp;<span class=\"badge badge-info\">"+r.available+"</span></p></li> ");
+
+            });
+
+                // console.log(response);
+                $('#rooms_av').html(arr);
+
+    }
+    });
+   
+}); 
+
 // getting room_types for hotel selected
 $("#hotel").on('change', function () {
     var hotel = $(this).val();
@@ -46,11 +70,3 @@ $("#rooms").on('change', function () {
     });
 });
 
-$(document).ready(function(){
-
-    var data = 
-    $.ajax({
-
-    });
-
-});

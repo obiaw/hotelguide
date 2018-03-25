@@ -32,7 +32,7 @@ router.get('/', function(req, res,next){
     });
 });
 
- router.post('/get_rooms_availability', function(req,res,next){
+ router.get('/get_rooms_availability', function(req,res,next){
         var db = req.db;
         var collect = db.get('hotels');
         var output =[];
@@ -41,10 +41,10 @@ router.get('/', function(req, res,next){
             else{
                 data.forEach(function(out){
                     out.rooms.forEach(function(result){
-                        result.push({"type" : result.room_type, "available" : result.rooms_available});
+                        output.push({"type" : result.room_type, "available" : result.rooms_available});
                     });
                 });
-                res.send(result);
+                res.send(output);
             }
         });
     });
