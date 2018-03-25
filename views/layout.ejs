@@ -219,6 +219,7 @@ function submitBooking() {
     amount = '$' + amount;
 
     if ($('#other').is(':checked')) {
+        paymethod = $('#other').val();
         if (date_in_tm < cur_dt_tm) {
             swal("Incorrect Date", "Checkin date can't be earlier than today's date?", "error");
         }

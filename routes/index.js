@@ -18,6 +18,8 @@ var nodemailer = require('nodemailer');
         var collection = db.get('hotels');
         var hotel_name = req.body.hotel;
         var results = [];
+        var output = {};
+
         if (hotel_name === 'Choose Hotel') {
             results = [];
             res.send(results);
@@ -29,6 +31,7 @@ var nodemailer = require('nodemailer');
                     });
                 });
                 res.send(results);
+                console.log(results);
             });
         }
     });
@@ -130,6 +133,8 @@ var nodemailer = require('nodemailer');
             }
         });
 
+        if (req.body.pay === 'Pay on Arrival'){ req.body.status = 'pending' }
+
         var booking_data = {
             fullname: req.body.fullname,
             email: req.body.email,
@@ -140,6 +145,7 @@ var nodemailer = require('nodemailer');
             hotelname: "Serena Hotel",
             room_type: req.body.rooms,
             amount: req.body.amount,
+            payment_method: req.body.pay,
             checkin_date: req.body.checkin_date,
             checkout_date: req.body.checkout_date,
             booking_date: req.body.current_date
@@ -160,10 +166,16 @@ var nodemailer = require('nodemailer');
             else {
                 db.collection("hotels").find({"rooms.room_type": req.body.rooms}, function (err, doc) {
                     doc.forEach(function (result) {
-                        db.collection("hotels").update(
-                            {_id: result._id, "rooms.room_type": req.body.rooms},
-                            {$inc: {"rooms.$.rooms_available": -1}}
-                        );
+                        if (req.body.pay === 'Pay on Arrival'){  // rooms available not reduced if customer chooses to pay on arrival
+                            db.collection("hotels").update(
+                                {_id: result._id, "rooms.room_type": req.body.rooms}
+                            );
+                        } else {
+                            db.collection("hotels").update(
+                                {_id: result._id, "rooms.room_type": req.body.rooms},
+                                {$inc: {"rooms.$.rooms_available": -1}}
+                            );
+                        }
                     });
                 });
 
