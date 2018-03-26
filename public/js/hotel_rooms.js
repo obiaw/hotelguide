@@ -22,6 +22,8 @@ $(document).ready(function(){
    
 }); 
 
+
+
 // getting room_types for hotel selected
 $("#hotel").on('change', function () {
     var hotel = $(this).val();
