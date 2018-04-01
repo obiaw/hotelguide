@@ -109,6 +109,76 @@ $(document).ready(function () {
   });
   $('#checkin').datepicker({});
   $('#checkout').datepicker({});
+  // get_others();
+
+  
+    });
+    
+//     function get_others(){
+//     $.ajax({
+//         url: "/admin/get_others",
+//         type: 'GET',
+//         // dataType: 'json',
+//         success:function(response){
+//             // console.log(response);
+//             var roooms = [];
+//                     response.data.forEach(function(items){
+//                     roooms.push('<tr><td>'+items.source+'</td><td>'+items.room_type+'</td></tr>');
+//                     });
+                    
+//                     $('#sources').html(roooms);
+
+//                     }
+//         });
+// }
+
+  $('#submit_book').on('click',function(e){
+          e.preventDefault();
+          
+           var bookings_sources ={
+             source: $('#source').val(),
+            room_typ : $('#room_ty :selected').text(),
+           }  ;
+
+           // source = $('#source').val();
+           // var  room_typ = $('#room_ty :selected').text();
+         
+          // var bookings_sources = {};
+          //   bookings_sources.source = source;
+          //   bookings_sources.room_typ = room_typ;
+
+          $.ajax({
+                url: './other_booking',
+                type: 'POST',
+                // dataType: "application/json",
+                contentType: "application/json",
+                // data: JSON.stringify(form_data),
+                data: JSON.stringify(bookings_sources),
+                success:function(response){
+                    // console.log(response.message);
+                    var roooms = [];
+                    response.data.forEach(function(items){
+                        // console.log(items);
+                        // console.log(items.source,items.room_type);
+                        // roooms.push({"source": items.source, "type": items.room_type});
+                        roooms.push('<tr><td>'+items.source+'</td><td>'+items.room_type+'</td></tr>');
+                        // items.forEach(function(result){
+                        // console.log(result.room_type, result.source);
+                        // });
+                    });
+                    // roooms.push('<tr><td>'+items.source+'</td><td>'+items.room_type+'</td></tr>');
+
+                    $('#sources').html(roooms);
+                    alert("Sucessfully Added a Reservatin ");
+                },
+                error:function(err){
+                    alert("Oops" + err.message);
+                },
+          });
+
+          // alert(source + room_typ);
+        // });
+
 });
 
 $('.btn-next').on('click',function(event){

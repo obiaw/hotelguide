@@ -12,24 +12,13 @@
                     <tr>
                     <th>Room Type</th>
                     <th>From(eg. Jumia)</th>
-                    <th>Available Rooms</th>
-                    <!-- <th>Check In</th>
-                    <th>Check Out</th> -->
-                    <!-- <th>Room Type</th>
-                    <th>Payment Method</th>
-                    <th>Amount ($)</th>
-                    <th >Status</th> -->
+                    <!-- <th>Available Rooms</th> -->
                     </tr>
-                       
                     </thead>
-                    <tbody>
-                          <% for(var i=1; i<=10; i++ ){%>
-                          <tr>
-                            <td>Delux Double</td>
-                            <td>Jumia Bookings</td>
-                            <td>10</td>
-                        </tr>
-                        <%}%>
+                    <tbody id="sources">
+                         
+                          
+                      
                         
                     </tbody>
 
@@ -37,29 +26,33 @@
 
           </div>
           <div class="col-sm-4" style="border-left:1px solid #eee;background: #fafafa;">
-               <h6>Source of the Booking</h6>
-                        <br>
+              <form action="./other_booking" method="post" id="reserver">
+                 <h6>Source of the Booking</h6>
+                <br>
                 <div class="jumbotron  white-bg p-4">
-               
                 <p class="p-0 m-0">Select Source</p>
-                <select id="source" class="form-control mb-2">
+                <select id="source" class="form-control mb-2" name="source">
                 <option value="Jumia Bookings">Jumia Bookings</option>
                 <option value="Bookings.com">Bookings.com</option>
                 <option value="Others">Others</option>
                 </select>
                 </div>
-                        <div class="jumbotron  white-bg p-4">
+                <div class="jumbotron  white-bg p-4">
                 <p class="p-0 m-0">Select Room Type</p>
-                <select class="form-control mb-2" id="delete-tours">
-                <option value="49">Delux Single</option>
-                <option value="48">Double</option>
-                <option value="46">Executive Room </option>
-                <option value="47">Honeymoon Suite</option>
+                <select class="form-control mb-2" name="room_ty" id="room_ty">
+                <% if((roomz.length) > 0){%>
+                  <% roomz.forEach(function(r){%>
+                    <option value="<%=r.room_t%>"><%=r.room_t%></option>
+                  <%});%>
+                <%} else{%>
+                    <p>No rooms found!</p>
+                <%}%>
                 </select>
-                 <button class="btn btn-sm btn-primary" onclick="reserve(this)">
+                 <button class="btn btn-sm btn-primary" name="submit_book" id="submit_book" type="submit">
                   <i class="fa fa-plus"></i> Create Reservation</button>
               
               </div>
+              </form>
           </div>
         </div>
 
@@ -67,4 +60,4 @@
   
     <br> <br> <br> <br> <br> <br> <br> <br>
      <% include footer.ejs %> 
-   
+  

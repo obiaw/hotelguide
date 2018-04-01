@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     $.ajax({
         url: "/admin/get_rooms_availability",
-        types: 'GET',
+        type: 'GET',
         // dataType: 'json',
         success:function(response){
             // console.log(response);
@@ -15,10 +15,26 @@ $(document).ready(function(){
             });
 
                 // console.log(response);
-                $('#rooms_av').html(arr);
+             $('#rooms_av').html(arr);
 
     }
     });
+
+    $.ajax({
+        url: "/admin/get_others",
+        type: 'GET',
+        // dataType: 'json',
+        success:function(response){
+            // console.log(response);
+            var roooms = [];
+                    response.data.forEach(function(items){
+                    roooms.push('<tr><td>'+items.source+'</td><td>'+items.room_type+'</td></tr>');
+                    });
+                    
+                    $('#sources').html(roooms);
+
+                    }
+        });
    
 }); 
 
