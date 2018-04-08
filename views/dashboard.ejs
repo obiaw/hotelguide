@@ -33,7 +33,12 @@
     		<br><br>
     		<div class="row">
     			<div class="col-sm-9">
-         		<p class="txt-bold">Reservations Direct for Hotel Guide</p>
+         		<p class="txt-bold text-center"  style="font-size: 14pt;
+color: #ffffff;
+border: 2px solid #28a745 !important;
+border-radius: 5px;
+background: #28a745 !important;
+box-shadow: inset 0 0 10px rgba(0,0,0,0.6);">Reservations Direct for Hotel Guide Bot</p>
               		<% if((data.length) > 0) {%>
               		<table class="table table-bordered table-">
                     <thead>
@@ -92,7 +97,30 @@
 
       	 </div>
       	 <div class="col-sm-3"> 
-      	 	<p class="txt-bold">Room Types and Status</p>
+      	 	<p class="txt-bold text-center" style="font-size: 14pt;
+color: #ffffff;
+border: 2px solid #28a745 !important;
+border-radius: 5px;
+background: #28a745 !important;
+box-shadow: inset 0 0 10px rgba(0,0,0,0.6);">Room Types</p>
+          <form action="" method="post">
+                 <!-- <h6>Source of the Booking</h6> -->
+                <br>
+                <div class="jumbotron p-4">
+                <!-- <p class="p-0 m-0">Select Source</p> -->
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input type="text" name="room-t" class="form-control" placeholder="Room TYpe eg Delux">
+                      <input type="text" name="room-av" class="form-control" placeholder="Number Available eg 20">
+                      <input type="text" name="room-price" class="form-control" placeholder="Price eg $250">
+                    </div>
+                  </div>
+                  <br>
+                 <button class="btn btn-sm btn-primary" type="submit">
+                  <i class="fa fa-plus"></i> Add room type</button>
+                </div>
+              
+              </form>
       	 		<ul class="list-groug" id="rooms_av">
               
       	 			

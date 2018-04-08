@@ -121,4 +121,8 @@ router.get('/login', function(req,res){
 	res.render('login',{title: "Hotel Guide Login"});
 });
 
+router.get('/register', function(req,res){
+
+    res.render('register');
+});
 module.exports = router;
